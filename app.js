@@ -162,7 +162,7 @@ window.addEventListener('mousemove', (e) => {
 const navLinks = menu ? [...menu.querySelectorAll('a[href^="#"]')] : [];
 
 // List of section IDs to track on the page in vertical order
-const observedSectionIds = ['hero', 'about', 'why', 'features', 'basamesh', 'product', 'audience', 'contact'];
+const observedSectionIds = ['hero', 'video', 'about', 'why', 'features', 'basamesh', 'product', 'audience', 'contact'];
 
 // Query each section element and filter out any IDs that might not exist in the DOM
 const observedSections = observedSectionIds

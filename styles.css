@@ -869,8 +869,9 @@ p {
   position: absolute;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 13px 18px;
+  gap: 12px;
+  padding: 11px 16px;
+  max-width: 270px;
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(20px) saturate(180%);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -898,24 +899,20 @@ p {
                 0 0 0 1px rgba(203, 213, 225, 0.85);
   }
 }
-  .float-card:hover {
-    transform: translateY(-5px) scale(1.02);
-    animation-play-state: paused;
-    box-shadow: 0 22px 42px -8px rgba(15, 23, 42, 0.16),
-                0 6px 16px -2px rgba(15, 23, 42, 0.06),
-                0 0 0 1px rgba(203, 213, 225, 0.85);
-  }
-}
 
+/* Card 1: Top Floating Badge (Adaptive Leveling)
+   Shifted outward to left: -65px and top: 10% to float cleanly in the open space beside hair & shoulder */
 .float-card-top {
-  top: 8%;
-  left: -20px;
+  top: 10%;
+  left: -65px;
   animation: floatCardTop 4.8s ease-in-out 0.8s infinite;
 }
 
+/* Card 2: Bottom Floating Badge (Phil-IRI & Quests)
+   Shifted outward to right: -65px and bottom: 2% to float cleanly in the open space beside knee & sneakers */
 .float-card-bottom {
-  bottom: 8%;
-  right: -20px;
+  bottom: 2%;
+  right: -65px;
   animation: floatCardBottom 5.4s ease-in-out 1.2s infinite;
 }
 
@@ -1075,6 +1072,106 @@ p {
   font-size: 0.88rem;
   line-height: 1.5;
   margin: 0;
+}
+
+/* ==========================================================================
+   Promotional Video Spotlight Section
+   Purpose: Features the 60-second BasaWisyo concept walkthrough video in
+   a responsive 16:9 cinema frame with ambient glow and summary badges.
+   ========================================================================== */
+
+.video-spotlight {
+  background-color: var(--paper);
+  position: relative;
+  overflow: hidden;
+  padding: clamp(70px, 7vw, 110px) clamp(20px, 4vw, 32px);
+  border-bottom: 1px solid var(--line);
+}
+
+.video-container {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* Ambient Radial Glow behind Video Frame */
+.video-ambient-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  height: 90%;
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.16) 0%, rgba(16, 32, 95, 0.08) 50%, transparent 75%);
+  filter: blur(48px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Cinema Frame Wrapper */
+.video-wrapper {
+  position: relative;
+  z-index: 1;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  background-color: var(--deep);
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  box-shadow: 0 24px 60px -12px rgba(15, 23, 42, 0.22), 0 8px 16px -4px rgba(15, 23, 42, 0.08);
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* HTML5 Video Element */
+.promo-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  background-color: #000000;
+  outline: none;
+}
+
+/* Feature Pill Summary underneath video */
+.video-feature-strip {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.v-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-pill);
+  font-size: 0.85rem;
+  font-weight: 650;
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out);
+}
+
+.v-pill:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--blue-border);
+}
+
+.v-pill svg {
+  width: 16px;
+  height: 16px;
+  color: var(--blue);
 }
 
 /* ==========================================================================
@@ -2575,6 +2672,17 @@ p {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
+
+  /* Keep hero badges comfortably outside character on tablet screens */
+  .float-card-top {
+    left: -35px;
+    top: 8%;
+  }
+
+  .float-card-bottom {
+    right: -35px;
+    bottom: 2%;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -2694,22 +2802,22 @@ p {
     display: none; /* Hides scroll prompt arrow on smaller mobile viewports */
   }
 
-  /* Compact floating cards for mobile screens */
+  /* Compact floating cards for mobile screens - placed in perimeter whitespace */
   .float-card {
-    padding: 10px 14px;
+    padding: 9px 14px;
     gap: 10px;
     border-radius: 16px;
-    max-width: min(320px, calc(100% - 20px));
+    max-width: 250px;
   }
 
   .float-card-top {
-    left: 0;
-    top: 4%;
+    left: -12px;
+    top: 0;
   }
 
   .float-card-bottom {
-    right: 0;
-    bottom: 4%;
+    right: -12px;
+    bottom: -10px;
   }
 
   .float-icon {
@@ -2802,21 +2910,21 @@ p {
   }
 
   .float-card {
-    padding: 8px 12px;
+    padding: 7px 11px;
     gap: 8px;
     border-radius: 14px;
-    max-width: 88%;
+    max-width: 210px;
   }
 
   .float-icon {
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
     border-radius: 9px;
   }
 
   .float-icon svg {
-    width: 16px;
-    height: 16px;
+    width: 15px;
+    height: 15px;
   }
 
   .float-tag {
@@ -2833,13 +2941,13 @@ p {
   }
 
   .float-card-top {
-    left: 4px;
-    top: 2%;
+    left: -6px;
+    top: -6px;
   }
 
   .float-card-bottom {
-    right: 4px;
-    bottom: 2%;
+    right: -6px;
+    bottom: -8px;
   }
 
   .dialog-head {

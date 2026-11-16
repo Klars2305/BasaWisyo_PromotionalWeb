@@ -85,6 +85,7 @@
       <!-- Navigation Links Container (collapses into slide drawer on mobile) -->
       <div class="nav-links" id="nav-links">
         <a href="#hero">Home</a>
+        <a href="#video">Video</a>
         <a href="#about">About Us</a>
         <a href="#features">Features</a>
         <a href="#product">Product</a>
@@ -185,6 +186,47 @@
           <div class="value-content">
             <strong>Teacher-Friendly Workflow</strong>
             <p>Clear diagnostic views that reduce administrative load.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================
+         PROMOTIONAL VIDEO SPOTLIGHT SECTION
+         Purpose: Showcases the 60-second BasaWisyo concept video with high-definition
+         HTML5 playback, accessible controls, and key capability summary pills.
+         ====================================================================== -->
+    <section class="section video-spotlight" id="video" aria-labelledby="video-title">
+      <div class="wrap">
+        <div class="section-header-center reveal">
+          <span class="section-eyebrow">Concept in Action</span>
+          <h2 id="video-title">Watch <em>BasaWisyo</em> in motion.</h2>
+          <p class="section-subtitle">Take a 60-second walkthrough of our baseline placement assessment, dual-language practice, and teacher diagnostic workflow.</p>
+        </div>
+
+        <div class="video-container reveal">
+          <div class="video-ambient-glow" aria-hidden="true"></div>
+          
+          <div class="video-wrapper">
+            <video 
+              id="promo-video" 
+              controls 
+              preload="metadata" 
+              playsinline 
+              class="promo-video-player"
+              aria-label="BasaWisyo 60-Second Promotional Concept Video"
+            >
+              <source src="assets/basawisyo-promo.mp4" type="video/mp4">
+              Your browser does not support the video tag. Please view the video file in the assets folder.
+            </video>
+          </div>
+
+          <!-- Feature Pills Underneath Video Player -->
+          <div class="video-feature-strip">
+            <span class="v-pill"><svg><use href="#icon-book"/></svg> Phil-IRI Baseline Demo</span>
+            <span class="v-pill"><svg><use href="#icon-sparkles"/></svg> Bilingual EN / FIL Passages</span>
+            <span class="v-pill"><svg><use href="#icon-people"/></svg> Bayanihan Class Quests</span>
+            <span class="v-pill"><svg><use href="#icon-chart"/></svg> Teacher Diagnostic Insights</span>
           </div>
         </div>
       </div>
@@ -708,6 +750,7 @@
       <div class="footer-links-col">
         <h3>Explore</h3>
         <a href="#hero">Home</a>
+        <a href="#video">Watch Video</a>
         <a href="#about">Our Story</a>
         <a href="#why">Why BasaWisyo</a>
         <a href="#features">Six Offerings</a>
