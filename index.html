@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en" data-type="software" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <script>document.documentElement.classList.replace('no-js', 'js');</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f8fafc">
+  <meta name="page-type" content="software"><meta name="site-kind" content="software">
+  <meta name="description" content="BasaWisyo is an educational learning platform concept for Filipino readers in Grades 7–12, with leveled English and Filipino practice, classroom quests, teacher insights, and an offline-first vision.">
+  <title>BasaWisyo — From reading struggles to confident readers</title>
+  <link rel="icon" href="assets/2fed55eddde2.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 5.5c-2.4-1.4-5.2-1.7-8-1v14c2.8-.7 5.6-.4 8 1 2.4-1.4 5.2-1.7 8-1v-14c-2.8-.7-5.6-.4-8 1Zm0 0v14"/></symbol>
+    <symbol id="icon-level" viewBox="0 0 24 24"><path d="M4 19h16M5 16v-4h4v4m2 0V8h4v8m2 0V4h4v12"/></symbol>
+    <symbol id="icon-people" viewBox="0 0 24 24"><circle cx="8" cy="8" r="2.5"/><circle cx="17" cy="9" r="2"/><path d="M3 19v-2a5 5 0 0 1 10 0v2m2-6a4 4 0 0 1 6 3.5V19H3"/></symbol>
+    <symbol id="icon-share" viewBox="0 0 24 24"><rect x="2.5" y="5" width="6" height="13" rx="1.5"/><rect x="15.5" y="5" width="6" height="13" rx="1.5"/><path d="M10 9c1.1-1 2.9-1 4 0m-4 3c1.1-1 2.9-1 4 0m-1.9 3h.1"/></symbol>
+    <symbol id="icon-report" viewBox="0 0 24 24"><path d="M6 3h9l3 3v15H6zM15 3v4h3M9 11h6M9 15h6M9 19h4"/></symbol>
+    <symbol id="icon-chart" viewBox="0 0 24 24"><path d="M4 20V4m0 16h16M8 16v-4m4 4V8m4 8V6m4 10v-3"/></symbol>
+    <symbol id="icon-arrow" viewBox="0 0 24 24"><path d="M4 12h15m-6-6 6 6-6 6"/></symbol>
+    <symbol id="icon-check" viewBox="0 0 24 24"><path d="m5 13 4 4L19 7"/></symbol>
+    <symbol id="icon-sparkles" viewBox="0 0 24 24"><path d="m12 3 1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 17l.9 2.1L22 20l-2.1.9L19 23l-.9-2.1L16 20l2.1-.9z"/></symbol>
+    <symbol id="icon-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol>
+    <symbol id="icon-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="icon-facebook" viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></symbol>
+    <symbol id="icon-user" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M5.5 21a6.5 6.5 0 0 1 13 0"/></symbol>
+    <symbol id="icon-role" viewBox="0 0 24 24"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5"/><path d="m2 12 10 5 10-5"/></symbol>
+    <symbol id="icon-school" viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 10h1M14 10h1M9 14h1M14 14h1M11 21v-3h2v3"/></symbol>
+    <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
+    <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
+  </svg>
+
+  <header class="site-header" id="page-top">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#hero" aria-label="BasaWisyo home">
+        <img src="assets/2fed55eddde2.png" alt="BasaWisyo owl emblem" width="40" height="40">
+        <span>Basa<span>Wisyo</span></span>
+      </a>
+      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
+        <span></span><span></span><span></span>
+      </button>
+      <div class="nav-links" id="nav-links">
+        <a href="#hero">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#features">Features</a>
+        <a href="#product">Product</a>
+        <a href="#contact">Contact</a>
+        <a class="button button-small nav-cta" href="#product">
+          Explore prototype <svg><use href="#icon-arrow"/></svg>
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">From reading struggles to <em>confident readers.</em></h1>
+          <p class="hero-lead">BasaWisyo is an educational platform concept for Grades 7–12 Filipino learners. It connects Phil-IRI-inspired baseline placement, leveled English and Filipino practice, collaborative quests, and actionable teacher progress insights.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#product">
+              Explore the prototype <svg><use href="#icon-arrow"/></svg>
+            </a>
+            <a class="button button-ghost" href="#features">
+              Discover features <span aria-hidden="true">→</span>
+            </a>
+          </div>
+          <div class="hero-trust">
+            <span class="trust-pill"><svg><use href="#icon-check"/></svg> Proposed Phil-IRI Framework</span>
+            <span class="trust-pill"><svg><use href="#icon-check"/></svg> Bilingual EN / FIL</span>
+            <span class="trust-pill"><svg><use href="#icon-check"/></svg> Offline-Ready Direction</span>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-label="BasaWisyo learner illustration">
+          <div class="character-showcase">
+            <!-- Ambient lighting glow and soft contact floor shadow -->
+            <div class="character-glow" aria-hidden="true"></div>
+            <div class="character-shadow" aria-hidden="true"></div>
+
+            <img src="assets/hero-character.png" alt="Filipino student reading BasaWisyo book" class="character-img" width="1122" height="1402" fetchpriority="high">
+
+            <!-- Card 1: Top Floating Badge (Adaptive Leveling) -->
+            <div class="float-card float-card-top" aria-hidden="true">
+              <div class="float-icon float-icon-blue">
+                <svg><use href="#icon-book"/></svg>
+              </div>
+              <div class="float-text">
+                <span class="float-tag float-tag-blue">Adaptive Leveling</span>
+                <strong>Read at your level</strong>
+                <small>Bilingual practice · English &amp; Filipino</small>
+              </div>
+            </div>
+
+            <!-- Card 2: Bottom Floating Badge (Phil-IRI & Quests) -->
+            <div class="float-card float-card-bottom" aria-hidden="true">
+              <div class="float-icon float-icon-gold">
+                <svg><use href="#icon-sparkles"/></svg>
+              </div>
+              <div class="float-text">
+                <span class="float-tag float-tag-gold">Phil-IRI Aligned</span>
+                <strong>Confident readers</strong>
+                <small>Grades 7–12 diagnostic quests</small>
+              </div>
+            </div>
+          </div>
+          <span class="visual-caption">Empowering Young Filipino Readers</span>
+        </div>
+      </div>
+      <a class="scroll-cue" href="#value">Explore BasaWisyo <span aria-hidden="true">↓</span></a>
+    </section>
+
+    <!-- VALUE STRIP -->
+    <section class="value-strip" id="value" aria-label="Core design pillars">
+      <div class="wrap value-grid">
+        <div class="value-item reveal">
+          <span class="value-num">01</span>
+          <div class="value-content">
+            <strong>English + Filipino</strong>
+            <p>Culturally resonant dual-language reading materials.</p>
+          </div>
+        </div>
+        <div class="value-item reveal">
+          <span class="value-num">02</span>
+          <div class="value-content">
+            <strong>Leveled Learning</strong>
+            <p>Adaptive passages matched to each student's readiness.</p>
+          </div>
+        </div>
+        <div class="value-item reveal">
+          <span class="value-num">03</span>
+          <div class="value-content">
+            <strong>Offline-First Idea</strong>
+            <p>Local peer sharing so learning continues without Wi-Fi.</p>
+          </div>
+        </div>
+        <div class="value-item reveal">
+          <span class="value-num">04</span>
+          <div class="value-content">
+            <strong>Teacher-Friendly Workflow</strong>
+            <p>Clear diagnostic views that reduce administrative load.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about" id="about" aria-labelledby="about-title">
+      <div class="wrap about-grid">
+        <div class="section-intro reveal">
+          <h2 id="about-title">Every reader deserves a way <em>forward.</em></h2>
+          <p class="intro-copy">BasaWisyo originated as a student startup concept addressing an undeniable reality across secondary schools: reading readiness varies significantly within a single classroom, while teachers navigate heavy administrative demands.</p>
+          <div class="about-quote">
+            <p>“When instructional passages meet students right where they are, reading shifts from anxiety to genuine self-confidence.”</p>
+          </div>
+        </div>
+
+        <div class="about-bento">
+          <article class="bento-card bento-primary reveal">
+            <div class="bento-header">
+              <span class="bento-tag">Background</span>
+              <span class="bento-icon"><svg><use href="#icon-sparkles"/></svg></span>
+            </div>
+            <h3>Groundwork for meaningful literacy</h3>
+            <p>We envision bite-sized, level-aware reading challenges that build comprehension incrementally. Materials stay accessible regardless of school connectivity constraints.</p>
+          </article>
+
+          <article class="bento-card reveal">
+            <div class="bento-header">
+              <span class="bento-tag">Mission</span>
+              <span class="bento-icon"><svg><use href="#icon-book"/></svg></span>
+            </div>
+            <h3>Make practice feel possible</h3>
+            <p>Provide Grade 7–12 learners with approachable bilingual exercises, while equipping teachers with timely diagnostic data to guide targeted interventions.</p>
+          </article>
+
+          <article class="bento-card reveal">
+            <div class="bento-header">
+              <span class="bento-tag">Vision</span>
+              <span class="bento-icon"><svg><use href="#icon-people"/></svg></span>
+            </div>
+            <h3>More confident readers nationwide</h3>
+            <p>A collaborative classroom environment where no reader is left behind, every achievement is celebrated, and literacy thrives in English and Filipino.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY / LEARNING JOURNEY -->
+    <section class="section why" id="why" aria-labelledby="why-title">
+      <div class="wrap why-grid">
+        <div class="why-copy reveal">
+          <h2 id="why-title">Reading support should meet students <em>where they are.</em></h2>
+          <p class="intro-copy">One-size-fits-all reading assignments often leave struggling readers overwhelmed and advanced readers unengaged. BasaWisyo proposes a guided three-step loop that turns diagnostic insight into daily growth.</p>
+          <div class="why-actions">
+            <a class="button button-primary" href="#features">
+              See the learning journey <svg><use href="#icon-arrow"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="journey-track" aria-label="BasaWisyo three-step learning journey">
+          <div class="journey-step reveal">
+            <div class="journey-node">
+              <span class="step-num">1</span>
+            </div>
+            <div class="journey-body">
+              <h3>Find a starting level</h3>
+              <p>A short Phil-IRI-inspired placement activity establishes a safe starting baseline without high-stakes pressure.</p>
+            </div>
+          </div>
+
+          <div class="journey-step reveal">
+            <div class="journey-node">
+              <span class="step-num">2</span>
+            </div>
+            <div class="journey-body">
+              <h3>Read, respond, repeat</h3>
+              <p>Curated bilingual passages and comprehension questions allow learners to build fluency at their own pace.</p>
+            </div>
+          </div>
+
+          <div class="journey-step reveal">
+            <div class="journey-node">
+              <span class="step-num">3</span>
+            </div>
+            <div class="journey-body">
+              <h3>See what needs support</h3>
+              <p>Educators monitor class trends and individual skill gaps to tailor instruction with confidence.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES SECTION -->
+    <section class="section features" id="features" aria-labelledby="features-title">
+      <div class="wrap">
+        <div class="section-header-center reveal">
+          <h2 id="features-title">Six purposeful ideas. <em>One reading journey.</em></h2>
+          <p class="section-subtitle">Every proposed capability targets a real classroom challenge, from initial diagnostic baseline to community reading quests and teacher analytics.</p>
+        </div>
+
+        <div class="feature-grid">
+          <!-- Card 1: Phil-IRI Placement -->
+          <article class="feature-card reveal">
+            <div class="feature-top">
+              <span class="feature-icon"><svg><use href="#icon-level"/></svg></span>
+              <span class="feature-num">01 / Start</span>
+            </div>
+            <h3>Phil-IRI-inspired placement</h3>
+            <p>A proposed initial assessment informed by the Philippine Informal Reading Inventory framework to match learners with appropriate reading levels. No official endorsement is claimed.</p>
+            <div class="feature-graphic levels" aria-hidden="true">
+              <span class="lvl lvl-1"></span>
+              <span class="lvl lvl-2"></span>
+              <span class="lvl lvl-3"></span>
+              <span class="lvl lvl-4"></span>
+            </div>
+          </article>
+
+          <!-- Card 2: Personalized Practice -->
+          <article class="feature-card reveal">
+            <div class="feature-top">
+              <span class="feature-icon"><svg><use href="#icon-book"/></svg></span>
+              <span class="feature-num">02 / Build</span>
+            </div>
+            <h3>Personalized practice</h3>
+            <p>Leveled reading passages and comprehension questions in both English and Filipino, designed for steady fluency and positive reinforcement.</p>
+            <div class="practice-mini" aria-hidden="true">
+              <span class="practice-tag">EN / FIL</span>
+              <span class="practice-bar bar-1"></span>
+              <span class="practice-bar bar-2"></span>
+              <span class="practice-bar bar-3"></span>
+            </div>
+          </article>
+
+          <!-- Card 3: Bayanihan Quests -->
+          <article class="feature-card reveal">
+            <div class="feature-top">
+              <span class="feature-icon"><svg><use href="#icon-people"/></svg></span>
+              <span class="feature-num">03 / Together</span>
+            </div>
+            <h3>Bayanihan Class Quests</h3>
+            <p>Cooperative reading activities where learners pool their reading milestones toward communal classroom goals, encouraging peer encouragement over competition.</p>
+          </article>
+
+          <!-- Card 4: BasaMesh -->
+          <article class="feature-card reveal">
+            <div class="feature-top">
+              <span class="feature-icon"><svg><use href="#icon-share"/></svg></span>
+              <span class="feature-num">04 / Share</span>
+            </div>
+            <h3>BasaMesh offline sharing</h3>
+            <p>A conceptual local-network distribution idea enabling teachers to transmit lessons and sync activity data across devices without active internet connections.</p>
+          </article>
+
+          <!-- Card 5: DepEd Reports & Form 14 -->
+          <article class="feature-card reveal">
+            <div class="feature-top">
+              <span class="feature-icon"><svg><use href="#icon-report"/></svg></span>
+              <span class="feature-num">05 / Organize</span>
+            </div>
+            <h3>DepEd reports &amp; Form 14</h3>
+            <p>Proposed automated reporting layouts formatted to simplify reading progress documentation for school records. No official DepEd integration is implied.</p>
+          </article>
+
+          <!-- Card 6: Teacher Dashboard -->
+          <article class="feature-card reveal">
+            <div class="feature-top">
+              <span class="feature-icon"><svg><use href="#icon-chart"/></svg></span>
+              <span class="feature-num">06 / Guide</span>
+            </div>
+            <h3>Teacher dashboard</h3>
+            <p>A proposed unified overview of class skill distributions, reading velocity, and focus areas to help educators make targeted instructional decisions.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BASAMESH HIGH-CONTRAST CONCEPT -->
+    <section class="section mesh" id="basamesh" aria-labelledby="mesh-title">
+      <div class="wrap mesh-grid">
+        <div class="mesh-copy reveal">
+          <h2 id="mesh-title">A reading lesson should travel <em>beyond the signal.</em></h2>
+          <p class="mesh-desc">Many Philippine schools operate in areas with fluctuating or absent mobile connectivity. BasaMesh explores a local peer-to-peer distribution model where one teacher station shares curated reading modules directly with nearby learner tablets.</p>
+          <div class="mesh-disclaimer">
+            <svg><use href="#icon-check"/></svg>
+            <span><strong>Honest concept:</strong> Proposed offline architecture for future prototype validation; not currently a live peer-to-peer protocol.</span>
+          </div>
+          <a class="button button-yellow" href="#product">
+            See prototype screens <svg><use href="#icon-arrow"/></svg>
+          </a>
+        </div>
+
+        <div class="mesh-diagram reveal" role="img" aria-label="Conceptual diagram showing teacher hub node distributing reading modules to three learner device nodes">
+          <div class="mesh-hub">
+            <div class="hub-icon"><svg><use href="#icon-book"/></svg></div>
+            <strong>Guro (Teacher)</strong>
+            <span>Reading Content Hub</span>
+          </div>
+
+          <div class="mesh-orbit-line orbit-1" aria-hidden="true"></div>
+          <div class="mesh-orbit-line orbit-2" aria-hidden="true"></div>
+
+          <div class="mesh-node node-a">
+            <span class="node-status"></span>
+            <strong>Learner 01</strong>
+            <small>Module Received</small>
+          </div>
+          <div class="mesh-node node-b">
+            <span class="node-status"></span>
+            <strong>Learner 02</strong>
+            <small>Practicing</small>
+          </div>
+          <div class="mesh-node node-c">
+            <span class="node-status"></span>
+            <strong>Learner 03</strong>
+            <small>Sync Ready</small>
+          </div>
+
+          <span class="diagram-tag">Concept Visualization · Illustrative Architecture</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRODUCT PROTOTYPE SELECTOR -->
+    <section class="section product" id="product" aria-labelledby="product-title">
+      <div class="wrap">
+        <div class="section-header-center reveal">
+          <h2 id="product-title">See the idea <em>take shape.</em></h2>
+          <p class="section-subtitle">Browse four high-fidelity screens from our initial design prototype. These assets illustrate the planned user journey and UI experience.</p>
+        </div>
+
+        <div class="product-workspace reveal">
+          <!-- Left Selector -->
+          <div class="product-sidebar">
+            <div class="selector-header">
+              <span class="selector-title">Select Prototype Screen</span>
+              <span id="screen-count" class="screen-counter">01 / 04</span>
+            </div>
+
+            <div class="screen-list" role="group" aria-label="Select prototype screen">
+              <button class="screen-option" type="button" data-screen="0" aria-pressed="true">
+                <span class="opt-num">01</span>
+                <span class="opt-text">
+                  <strong>Placement Assessment</strong>
+                  <small>Diagnostic entry point</small>
+                </span>
+                <svg class="opt-arrow"><use href="#icon-arrow"/></svg>
+              </button>
+
+              <button class="screen-option" type="button" data-screen="1" aria-pressed="false">
+                <span class="opt-num">02</span>
+                <span class="opt-text">
+                  <strong>Reading Practice</strong>
+                  <small>Bilingual leveled exercises</small>
+                </span>
+                <svg class="opt-arrow"><use href="#icon-arrow"/></svg>
+              </button>
+
+              <button class="screen-option" type="button" data-screen="2" aria-pressed="false">
+                <span class="opt-num">03</span>
+                <span class="opt-text">
+                  <strong>Bayanihan Quest</strong>
+                  <small>Classroom collaboration</small>
+                </span>
+                <svg class="opt-arrow"><use href="#icon-arrow"/></svg>
+              </button>
+
+              <button class="screen-option" type="button" data-screen="3" aria-pressed="false">
+                <span class="opt-num">04</span>
+                <span class="opt-text">
+                  <strong>Teacher Dashboard</strong>
+                  <small>Student analytics &amp; reports</small>
+                </span>
+                <svg class="opt-arrow"><use href="#icon-arrow"/></svg>
+              </button>
+            </div>
+
+            <div class="selector-footer">
+              <div class="nav-buttons">
+                <button id="prototype-prev" class="btn-ctrl" type="button" aria-label="Previous prototype screen" disabled>←</button>
+                <button id="prototype-next" class="btn-ctrl" type="button" aria-label="Next prototype screen">→</button>
+              </div>
+              <span id="prototype-status" class="status-indicator" role="status" aria-live="polite">Screen 1 of 4: Placement</span>
+            </div>
+          </div>
+
+          <!-- Right Display -->
+          <div class="product-display">
+            <div class="display-topbar">
+              <span id="screen-label" class="display-label">01 / Placement Assessment</span>
+              <button id="open-preview" class="preview-trigger" type="button">
+                Enlarge screen <span aria-hidden="true">↗</span>
+              </button>
+            </div>
+
+            <div class="device-holder">
+              <div class="display-device">
+                <img id="product-image" src="assets/c65299b50564.svg" alt="Placement test prototype screen" width="340" height="680">
+              </div>
+            </div>
+
+            <p id="screen-description" class="screen-desc">A Phil-IRI-inspired placement concept helps identify a learner’s starting level without anxiety.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUDIENCE SECTION -->
+    <section class="section audience" id="audience" aria-labelledby="audience-title">
+      <div class="wrap">
+        <div class="section-header-center reveal">
+          <h2 id="audience-title">A clearer path for <em>everyone involved.</em></h2>
+          <p class="section-subtitle">Designed to serve learners, support educators, and offer school administrators a scalable approach to reading intervention.</p>
+        </div>
+
+        <div class="audience-grid">
+          <article class="audience-card reveal">
+            <div class="audience-top">
+              <span class="aud-num">01</span>
+              <span class="aud-icon"><svg><use href="#icon-book"/></svg></span>
+            </div>
+            <h3>For Learners</h3>
+            <p>Experience culturally authentic stories in Filipino and English with questions that meet their exact comprehension level. Learners celebrate growth without fear of embarrassment.</p>
+          </article>
+
+          <article class="audience-card reveal">
+            <div class="audience-top">
+              <span class="aud-num">02</span>
+              <span class="aud-icon"><svg><use href="#icon-chart"/></svg></span>
+            </div>
+            <h3>For Teachers</h3>
+            <p>Gain automated reading skill summaries and progress logs that cut manual recording time, allowing more moments for direct student mentorship and tailored reading circles.</p>
+          </article>
+
+          <article class="audience-card reveal">
+            <div class="audience-top">
+              <span class="aud-num">03</span>
+              <span class="aud-icon"><svg><use href="#icon-people"/></svg></span>
+            </div>
+            <h3>For Schools</h3>
+            <p>Adopt an offline-friendly framework that works with existing mobile hardware, bringing modern literacy intervention to classrooms with limited network infrastructure.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CLOSING CTA BANNER -->
+    <section class="closing" aria-labelledby="closing-title">
+      <div class="wrap closing-grid reveal">
+        <div class="closing-copy">
+          <h2 id="closing-title">Let’s help more readers move <em>forward.</em></h2>
+          <p>Whether you are an educator, school leader, or literacy advocate, we welcome your feedback on the BasaWisyo concept as we refine the prototype.</p>
+        </div>
+        <div class="closing-actions">
+          <a class="button button-yellow" href="#product">
+            Explore the prototype <svg><use href="#icon-arrow"/></svg>
+          </a>
+          <a class="button button-dark-ghost" href="#contact">
+            Contact the team <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / INQUIRY SECTION -->
+    <section class="section contact" id="contact" aria-labelledby="contact-title">
+      <div class="wrap">
+        <div class="section-intro contact-intro reveal">
+          <span class="section-eyebrow">Get in touch</span>
+          <h2 id="contact-title">Interested in <em>BasaWisyo?</em></h2>
+          <p class="intro-copy">We are excited to connect with secondary school educators, reading coordinators, and academic mentors to validate upcoming features.</p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- LEFT CARD: DIRECT CHANNELS -->
+          <div class="contact-card reveal">
+            <div class="contact-card-head">
+              <div class="card-status-pill card-status-active">
+                <span class="status-dot green"></span>
+                <span>Direct Channels Active</span>
+              </div>
+              <h3 class="contact-card-title">Reach the Team Directly</h3>
+              <p class="contact-card-desc">Connect with our core team for quick inquiries, partnership discussions, or pilot school interest.</p>
+            </div>
+
+            <div class="contact-methods">
+              <a class="contact-method-item" href="mailto:rayonjustin187@gmail.com" title="Send email to rayonjustin187@gmail.com">
+                <span class="method-icon"><svg><use href="#icon-mail"/></svg></span>
+                <div class="method-meta">
+                  <span class="meta-label">Email Inquiries</span>
+                  <strong class="meta-val-text">rayonjustin187@gmail.com</strong>
+                  <small class="meta-sub">Direct inbox for educator inquiries</small>
+                </div>
+              </a>
+
+              <a class="contact-method-item" href="tel:+639638229225" title="Call or SMS 0963 822 9225">
+                <span class="method-icon"><svg><use href="#icon-phone"/></svg></span>
+                <div class="method-meta">
+                  <span class="meta-label">Mobile Hotline</span>
+                  <strong class="meta-val-text">0963 822 9225</strong>
+                  <small class="meta-sub">Call or SMS (Philippines)</small>
+                </div>
+              </a>
+
+              <a class="contact-method-item" href="https://www.facebook.com/profile.php?id=61596454082775" target="_blank" rel="noopener noreferrer" title="Visit our Facebook profile">
+                <span class="method-icon"><svg><use href="#icon-facebook"/></svg></span>
+                <div class="method-meta">
+                  <span class="meta-label">Official Facebook</span>
+                  <strong class="meta-val-text">BasaWisyo Community <span class="ext-arrow" aria-hidden="true">↗</span></strong>
+                  <small class="meta-sub">Connect via Messenger</small>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT CARD: DIRECT INQUIRY FORM -->
+          <form id="inquiry-form" class="contact-form reveal" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="form-name">
+                  <svg class="field-icon"><use href="#icon-user"/></svg>
+                  <span>Full name <span class="req" aria-hidden="true">*</span></span>
+                </label>
+                <input id="form-name" name="name" type="text" autocomplete="name" required placeholder="e.g. Maria Santos">
+              </div>
+              <div class="form-group">
+                <label for="form-email">
+                  <svg class="field-icon"><use href="#icon-mail"/></svg>
+                  <span>Email address <span class="req" aria-hidden="true">*</span></span>
+                </label>
+                <input id="form-email" name="email" type="email" autocomplete="email" required placeholder="maria@school.edu.ph">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="form-role">
+                  <svg class="field-icon"><use href="#icon-role"/></svg>
+                  <span>Your role <span class="req" aria-hidden="true">*</span></span>
+                </label>
+                <select id="form-role" name="role" required>
+                  <option value="">Select your role</option>
+                  <option>English / Filipino Teacher</option>
+                  <option>Reading Coordinator</option>
+                  <option>School Administrator</option>
+                  <option>Secondary Student (Grades 7–12)</option>
+                  <option>Parent / Guardian</option>
+                  <option>Education Advocate / Other</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="form-org">
+                  <svg class="field-icon"><use href="#icon-school"/></svg>
+                  <span>School / Organization <span class="opt">(Optional)</span></span>
+                </label>
+                <input id="form-org" name="organization" type="text" autocomplete="organization" placeholder="e.g. Rizal High School">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="form-msg">
+                <svg class="field-icon"><use href="#icon-chat"/></svg>
+                <span>Message or inquiry <span class="req" aria-hidden="true">*</span></span>
+              </label>
+              <textarea id="form-msg" name="message" rows="5" required placeholder="Tell us how BasaWisyo could support your students or classroom..."></textarea>
+            </div>
+
+            <div class="form-footer">
+              <p id="form-note" class="form-disclaimer">
+                <svg class="disclaimer-icon"><use href="#icon-info"/></svg>
+                <span>Submitting opens a pre-filled draft to rayonjustin187@gmail.com. Press Send in your email client to deliver it.</span>
+              </p>
+              <button class="button button-primary" type="submit">
+                Submit inquiry <svg><use href="#icon-arrow"/></svg>
+              </button>
+            </div>
+
+            <p id="form-feedback" class="form-feedback" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="wrap footer-main">
+      <div class="footer-brand-col">
+        <a class="brand footer-brand" href="#hero">
+          <img src="assets/2fed55eddde2.png" alt="BasaWisyo logo" width="38" height="38">
+          <span>Basa<span>Wisyo</span></span>
+        </a>
+        <p class="footer-tagline">From reading struggles to confident readers.<br>An educational startup concept for Grades 7–12 Filipino learners.</p>
+        <span class="footer-badge">ISSPEC3 Academic Project Concept</span>
+        <div class="footer-socials">
+          <a class="footer-social-link" href="https://www.facebook.com/profile.php?id=61596454082775" target="_blank" rel="noopener noreferrer" title="BasaWisyo on Facebook">
+            <svg class="footer-social-icon"><use href="#icon-facebook"/></svg>
+            <span>Facebook Page ↗</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-links-col">
+        <h3>Explore</h3>
+        <a href="#hero">Home</a>
+        <a href="#about">Our Story</a>
+        <a href="#why">Why BasaWisyo</a>
+        <a href="#features">Six Offerings</a>
+      </div>
+
+      <div class="footer-links-col">
+        <h3>Product</h3>
+        <a href="#product">Prototype Preview</a>
+        <a href="#basamesh">BasaMesh Architecture</a>
+        <a href="#audience">Who We Serve</a>
+        <a href="#contact">Inquiry Form</a>
+      </div>
+
+      <div class="footer-links-col">
+        <h3>Connect</h3>
+        <a href="mailto:rayonjustin187@gmail.com" title="Email Rayon Justin">rayonjustin187@gmail.com</a>
+        <a href="tel:+639638229225" title="Call or SMS">0963 822 9225</a>
+        <a href="https://www.facebook.com/profile.php?id=61596454082775" target="_blank" rel="noopener noreferrer" title="Facebook Profile">Facebook Page ↗</a>
+      </div>
+    </div>
+
+    <div class="wrap footer-bottom">
+      <div class="footer-meta">
+        <span>© 2026 BasaWisyo. Academic startup concept.</span>
+        <span>Original prototype screens shown with honest labeling.</span>
+      </div>
+      <a class="back-to-top" href="#hero">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <!-- PROTOTYPE IMAGE PREVIEW MODAL -->
+  <dialog id="preview-dialog" aria-labelledby="dialog-title">
+    <div class="dialog-head">
+      <div class="dialog-title-wrap">
+        <span class="dialog-tag">Prototype Screen Preview</span>
+        <h2 id="dialog-title">Placement Assessment</h2>
+      </div>
+      <div class="dialog-actions">
+        <a id="open-image" class="dialog-ext-link" href="assets/c65299b50564.svg" target="_blank" rel="noopener noreferrer">
+          Open image in new tab ↗
+        </a>
+        <button id="close-preview" class="dialog-close-btn" type="button" aria-label="Close preview dialog">
+          ✕
+        </button>
+      </div>
+    </div>
+    <div class="dialog-image-body">
+      <img id="dialog-image" src="assets/c65299b50564.svg" alt="Placement test prototype screen" width="340" height="680">
+    </div>
+  </dialog>
+</body>
+</html>
