@@ -1,72 +1,108 @@
 /* ==========================================================================
-   BasaWisyo Design System & Stylesheet
-   Crafted with Taste, Impeccable, and Emil Kowalski Design Principles
+   BASAWISYO DESIGN SYSTEM & CORE STYLESHEET (styles.css)
+   ==========================================================================
+   Architecture:
+   - CSS Custom Properties (:root design tokens for colors, shadows, radii)
+   - Resilient Box-Model & Typography Reset
+   - Modern Motion Physics (cubic-bezier easing curves & keyframes)
+   - Progressive Scroll Reveal System with CSS Staggering
+   - Responsive Fluid Layout (CSS Grid, Flexbox, clamp() units)
+   - WCAG 2.1 AA/AAA Contrast Accessibility Compliance
    ========================================================================== */
 
 :root {
-  /* Brand Color Tokens */
-  --navy: #10205f;
-  --navy-hover: #172a78;
-  --deep: #0b1644;
-  --blue: #2563eb;
-  --blue-hover: #1d4ed8;
-  --blue-subtle: #eff6ff;
-  --blue-border: #bfdbfe;
-  --yellow: #f59e0b;
-  --yellow-hover: #d97706;
-  --yellow-subtle: #fef3c7;
-  --yellow-light: #fffbeb;
+  /* ------------------------------------------------------------------------
+     1. BRAND COLOR TOKENS
+     Purpose: Centralized theme palette. Modifying these hex codes changes
+     the colors across the entire website instantly.
+     ------------------------------------------------------------------------ */
+  --navy: #10205f;          /* Primary Brand Navy: Used for main headings, buttons, and badges */
+  --navy-hover: #172a78;    /* Interactive hover state for primary navy elements */
+  --deep: #0b1644;          /* Deepest contrast shade for footer and dark containers */
+  --blue: #2563eb;          /* Accent Sapphire Blue: Used for links, highlights, and icons */
+  --blue-hover: #1d4ed8;    /* Hover state for blue buttons and text */
+  --blue-subtle: #eff6ff;   /* Soft blue tint background for active cards or pills */
+  --blue-border: #bfdbfe;   /* Gentle border for blue badges and callouts */
+  --yellow: #f59e0b;        /* Action Amber Yellow: Used for primary CTAs and attention cues */
+  --yellow-hover: #d97706;  /* Hover state for amber CTA buttons */
+  --yellow-subtle: #fef3c7; /* Highlight selection background and warm pill backgrounds */
+  --yellow-light: #fffbeb;  /* Ultra-light background for highlighted cards */
 
-  /* Neutral Text & Surface Tokens */
-  --ink: #0f172a;          /* Slate 900 - High contrast text (~14:1) */
-  --muted: #334155;        /* Slate 700 - Secondary text (~8.5:1) */
-  --muted-light: #475569;  /* Slate 600 - Tertiary text (~5.8:1) */
-  --paper: #f8fafc;        /* Slate 50 - Canvas background */
-  --surface: #ffffff;
-  --surface-card: #ffffff;
-  --surface-card-alt: #f1f5f9;
-  --line: #e2e8f0;
-  --line-strong: #cbd5e1;
-  --line-dark: rgba(255, 255, 255, 0.14);
+  /* ------------------------------------------------------------------------
+     2. NEUTRAL TEXT & SURFACE TOKENS
+     Purpose: High-contrast legible typography compliant with WCAG standards.
+     ------------------------------------------------------------------------ */
+  --ink: #0f172a;           /* Slate 900: High-contrast body text (~14:1 contrast ratio) */
+  --muted: #334155;         /* Slate 700: Secondary descriptive copy (~8.5:1 contrast) */
+  --muted-light: #475569;   /* Slate 600: Tertiary metadata, timestamps, and captions (~5.8:1) */
+  --paper: #f8fafc;         /* Slate 50: Neutral page canvas background */
+  --surface: #ffffff;       /* Pure white card and modal container backgrounds */
+  --surface-card: #ffffff;  /* Card surface token */
+  --surface-card-alt: #f1f5f9; /* Alternate muted card surface */
+  --line: #e2e8f0;          /* Subtle divider line and card border */
+  --line-strong: #cbd5e1;   /* Emphasized border for inputs and interactive borders */
+  --line-dark: rgba(255, 255, 255, 0.14); /* Semi-transparent border for dark theme areas */
 
-  /* Directional Elevation Shadows (No zero-offset colored glows) */
+  /* ------------------------------------------------------------------------
+     3. DIRECTIONAL ELEVATION SHADOWS
+     Purpose: Realistic lighting depth. Uses multi-layered subtle shadows
+     rather than harsh single-layer outlines.
+     ------------------------------------------------------------------------ */
   --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(15, 23, 42, 0.08), 0 2px 4px -2px rgba(15, 23, 42, 0.04);
   --shadow-lg: 0 10px 25px -3px rgba(15, 23, 42, 0.09), 0 4px 6px -4px rgba(15, 23, 42, 0.03);
   --shadow-xl: 0 20px 35px -5px rgba(15, 23, 42, 0.11), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
-  --shadow-float: 0 24px 48px -12px rgba(15, 23, 42, 0.16);
+  --shadow-float: 0 24px 48px -12px rgba(15, 23, 42, 0.16); /* For floating cards and modals */
 
-  /* Corner Radii */
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-xl: 28px;
-  --radius-pill: 9999px;
+  /* ------------------------------------------------------------------------
+     4. BORDER RADII (CORNER ROUNDING)
+     Purpose: Consistent modern rounding scales from micro-elements to pills.
+     ------------------------------------------------------------------------ */
+  --radius-sm: 8px;     /* Small buttons, tags, and form fields */
+  --radius-md: 14px;    /* Regular buttons, icon containers, and badges */
+  --radius-lg: 20px;    /* Standard cards and floating navigation pill */
+  --radius-xl: 28px;    /* Large bento cards, hero showcases, and dialog modal */
+  --radius-pill: 9999px; /* Fully rounded pill badges and status indicators */
 
-  /* Hakbang & Emil Kowalski Motion Tokens */
-  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-out-spring: cubic-bezier(0.2, 0.9, 0.4, 1.1);
-  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);
-  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
-  --duration-fast: 150ms;
-  --duration-normal: 250ms;
-  --duration-slow: 350ms;
-  --motion-fast: 160ms;
-  --motion-normal: 260ms;
-  --motion-slow: 380ms;
-  --motion-reveal: 650ms;
+  /* ------------------------------------------------------------------------
+     5. MOTION & EASING TOKENS (Emil Kowalski Physics)
+     Purpose: Replaces generic 'ease-in-out' with natural deceleration
+     and spring curves for premium interactive tactile feel.
+     ------------------------------------------------------------------------ */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);  /* Smooth deceleration for entrances */
+  --ease-out-spring: cubic-bezier(0.2, 0.9, 0.4, 1.1); /* Micro-bounce for interactive cards */
+  --ease-ui: cubic-bezier(0.2, 0.8, 0.2, 1);          /* General UI transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);         /* Primary smooth reveal easing */
+  
+  /* Transition Duration Scales */
+  --duration-fast: 150ms;    /* Button clicks and hover colors */
+  --duration-normal: 250ms;  /* Card hover elevations and drawer movements */
+  --duration-slow: 350ms;    /* Modal dialog open/close */
+  --motion-fast: 160ms;      /* Fast prototype crossfade out */
+  --motion-normal: 260ms;    /* Normal prototype crossfade in */
+  --motion-slow: 380ms;      /* Large component shifts */
+  --motion-reveal: 650ms;    /* IntersectionObserver scroll fade-in duration */
 
-  color-scheme: light;
+  color-scheme: light; /* Enforces light-mode rendering for form controls and canvas */
 }
 
 /* ==========================================================================
-   Base & Reset
+   BASE & RESET STYLES
+   Purpose: Normalizes default browser quirks, ensures cross-browser
+   consistency, and enforces accessible focus states.
    ========================================================================== */
 
+/* Universal Box-Sizing:
+   Ensures padding and borders are included within the declared element width/height,
+   preventing unexpected layout overflow issues. */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
+/* Root HTML Element:
+   - scroll-behavior: smooth ensures native smooth anchor jumps
+   - scroll-padding-top: 100px offsets target headings from the sticky header
+   - Font smoothing: Activates subpixel anti-aliasing on WebKit and macOS */
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 100px;
@@ -74,6 +110,8 @@ html {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Body Canvas:
+   Sets default typography stack, background color, and line-height for readability */
 body {
   margin: 0;
   background-color: var(--paper);
@@ -81,45 +119,60 @@ body {
   font-family: 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   font-size: 16px;
   line-height: 1.65;
-  overflow-x: hidden;
+  overflow-x: hidden; /* Prevents unwanted horizontal scrollbars from entrance animations */
 }
 
+/* Modern CSS :has() Relational Selector:
+   Locks body scroll automatically whenever an HTML5 <dialog open> modal is active */
 body:has(dialog[open]) {
   overflow: hidden;
 }
 
+/* Text Selection Styling:
+   Customizes text highlight color to match brand amber */
 ::selection {
   background-color: var(--yellow-subtle);
   color: var(--deep);
 }
 
+/* Link Reset:
+   Removes default blue underlines; inherits color unless styled */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+/* Form Controls Font Inheritance:
+   Forces form elements to inherit font-family and font-size from parent elements */
 button, input, select, textarea {
   font-family: inherit;
   font-size: inherit;
 }
 
+/* Button Reset */
 button {
   cursor: pointer;
   border: none;
   background: none;
 }
 
+/* Keyboard Accessibility Focus Ring (WCAG 2.1):
+   Only displays when navigated via keyboard Tab key, avoiding ugly rings on mouse click */
 :focus-visible {
   outline: 2px solid var(--blue);
   outline-offset: 3px;
 }
 
+/* Responsive Images:
+   Prevents images from overflowing parent columns; display:block eliminates inline whitespace */
 img {
   max-width: 100%;
   height: auto;
   display: block;
 }
 
+/* Global SVG Vector Defaults:
+   Ensures icons maintain consistent stroke, sizing, and stroke caps across the site */
 svg {
   width: 20px;
   height: 20px;
@@ -131,6 +184,8 @@ svg {
   flex-shrink: 0;
 }
 
+/* Hidden Icon Sprite:
+   Visually hides the SVG sprite definitions while keeping them accessible to <use> tags */
 .icon-sprite {
   position: absolute;
   width: 0;
@@ -138,6 +193,8 @@ svg {
   overflow: hidden;
 }
 
+/* Center Content Wrapper:
+   Constrains maximum layout width to 1200px and centers content horizontally */
 .wrap {
   width: 100%;
   max-width: 1200px;
@@ -145,9 +202,13 @@ svg {
 }
 
 /* ==========================================================================
-   Motion Choreography Keyframes (Hakbang & Emil Kowalski Principles)
+   MOTION CHOREOGRAPHY KEYFRAMES (EMIL KOWALSKI MICRO-INTERACTIONS)
+   Purpose: Hardware-accelerated CSS animations utilizing 'transform' and
+   'opacity'. By avoiding width, height, or margin animations, the browser
+   compositor handles these on the GPU without triggering CPU reflow/repaint.
    ========================================================================== */
 
+/* Header Entrance: Slides gently downward from top with a subtle fade */
 @keyframes fadeSlideDown {
   from {
     opacity: 0;
@@ -159,6 +220,7 @@ svg {
   }
 }
 
+/* Staggered Text Entrance: Lifts copy upward while fading in */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -170,6 +232,7 @@ svg {
   }
 }
 
+/* Hero Character Art Entrance: Combines scale-up (0.95 -> 1) with vertical lift */
 @keyframes heroArtEntrance {
   from {
     opacity: 0;
@@ -181,15 +244,19 @@ svg {
   }
 }
 
+/* Floating Card 1 (Top Badge): Subtle 4.8s infinite organic levitation */
 @keyframes floatCardTop {
   0%, 100% {
     transform: translateY(0);
   }
   50% {
-    transform: translateY(-7px);
+    transform: translateY(-7px); /* Gentle 7px floating peak */
   }
 }
 
+/* Floating Card 2 (Bottom Badge): 5.4s infinite loop offset from Card 1
+   Staggered timing (4.8s vs 5.4s) prevents the two floating badges from
+   moving in lockstep, creating a much more natural, dynamic visual rhythm. */
 @keyframes floatCardBottom {
   0%, 100% {
     transform: translateY(0);
@@ -199,6 +266,7 @@ svg {
   }
 }
 
+/* Slide in from right (used for mobile navigation transitions) */
 @keyframes slideInRight {
   from {
     opacity: 0;
@@ -211,37 +279,54 @@ svg {
 }
 
 /* ==========================================================================
-   Progressive Scroll Reveals (Single Unified System)
+   PROGRESSIVE SCROLL REVEAL SYSTEM (INTERSECTION OBSERVER TARGETS)
+   Purpose: Pure CSS styling for elements animated by JavaScript IntersectionObserver.
+   - Initial State: Hidden 24px lower (translateY) with zero opacity.
+   - Revealed State: Smoothly rises to translateY(0) with full opacity.
+   - Progressive Enhancement: If JavaScript fails or is disabled (html:not(.js)),
+     elements remain 100% visible by default so users never see a blank page.
    ========================================================================== */
 
 html.js:not(.reduced-motion) .reveal {
   opacity: 0;
   transform: translateY(24px);
+  /* Uses cubic-bezier custom property for deceleration without sudden snapping */
   transition: opacity var(--motion-reveal) var(--ease-out),
               transform var(--motion-reveal) var(--ease-out);
+  /* transition-delay is calculated dynamically via the --reveal-delay variable */
   transition-delay: calc(var(--reveal-delay, 0ms));
+  /* will-change hints the browser GPU to allocate a dedicated rendering layer */
   will-change: opacity, transform;
 }
 
+/* Triggered when IntersectionObserver in app.js adds the .revealed class */
 html.js:not(.reduced-motion) .reveal.revealed {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* Stagger within grid rows */
+/* --------------------------------------------------------------------------
+   STAGGERED REVEAL DELAYS
+   Purpose: When multiple cards enter the viewport together, they animate
+   sequentially (cascade effect) rather than all appearing at the exact same millisecond.
+   -------------------------------------------------------------------------- */
+/* Value Strip: 80ms increments */
 .value-grid > .reveal:nth-child(1) { --reveal-delay: 0ms; }
 .value-grid > .reveal:nth-child(2) { --reveal-delay: 80ms; }
 .value-grid > .reveal:nth-child(3) { --reveal-delay: 160ms; }
 .value-grid > .reveal:nth-child(4) { --reveal-delay: 240ms; }
 
+/* About Section Bento Grid: 90ms increments */
 .about-bento > .reveal:nth-child(1) { --reveal-delay: 0ms; }
 .about-bento > .reveal:nth-child(2) { --reveal-delay: 90ms; }
 .about-bento > .reveal:nth-child(3) { --reveal-delay: 180ms; }
 
+/* Learning Journey 3-Step Track: 100ms increments */
 .journey-track > .reveal:nth-child(1) { --reveal-delay: 0ms; }
 .journey-track > .reveal:nth-child(2) { --reveal-delay: 100ms; }
 .journey-track > .reveal:nth-child(3) { --reveal-delay: 200ms; }
 
+/* 6-Card Feature Grid: Row-by-row cascading delays */
 .feature-grid > .reveal:nth-child(1) { --reveal-delay: 0ms; }
 .feature-grid > .reveal:nth-child(2) { --reveal-delay: 90ms; }
 .feature-grid > .reveal:nth-child(3) { --reveal-delay: 180ms; }
@@ -249,10 +334,17 @@ html.js:not(.reduced-motion) .reveal.revealed {
 .feature-grid > .reveal:nth-child(5) { --reveal-delay: 90ms; }
 .feature-grid > .reveal:nth-child(6) { --reveal-delay: 180ms; }
 
+/* Audience Target Cards: 90ms increments */
 .audience-grid > .reveal:nth-child(1) { --reveal-delay: 0ms; }
 .audience-grid > .reveal:nth-child(2) { --reveal-delay: 90ms; }
 .audience-grid > .reveal:nth-child(3) { --reveal-delay: 180ms; }
 
+/* --------------------------------------------------------------------------
+   ACCESSIBILITY: SKIP NAVIGATION LINK
+   Purpose: Hidden off-screen by default (top: -80px). When a keyboard user
+   presses Tab upon page load, it slides down into view so they can skip
+   repetitive navbar links and jump straight to #main-content.
+   -------------------------------------------------------------------------- */
 .skip-link {
   position: fixed;
   top: -80px;
@@ -269,46 +361,59 @@ html.js:not(.reduced-motion) .reveal.revealed {
 }
 
 .skip-link:focus {
-  top: 16px;
+  top: 16px; /* Pops into view when focused via keyboard Tab */
 }
 
 /* ==========================================================================
-   Typography Hierarchy
+   TYPOGRAPHY HIERARCHY
+   Purpose: Establishes clear visual hierarchy, fluid responsive sizing,
+   and balanced typographic line breaks across all screens.
    ========================================================================== */
 
 h1, h2, h3, h4, p {
-  margin-top: 0;
+  margin-top: 0; /* Clears erratic default browser top margins */
 }
 
 h1, h2, h3, h4 {
   font-family: 'Outfit', system-ui, sans-serif;
   color: var(--navy);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.03em; /* Tight display letter-spacing for premium editorial feel */
   line-height: 1.12;
+  /* text-wrap: balance prevents awkward single orphan words on the second line */
   text-wrap: balance;
 }
 
+/* Main Hero Heading:
+   Fluid typography clamp(minimum, preferred, maximum):
+   Scales smoothly from 2.75rem (44px) on small screens up to 4.25rem (68px) on desktops */
 h1 {
   font-size: clamp(2.75rem, 5vw, 4.25rem);
   font-weight: 750;
   line-height: 1.08;
 }
 
+/* Section Title Headings:
+   Fluid scale from 2rem (32px) to 3.25rem (52px) */
 h2 {
   font-size: clamp(2rem, 3.8vw, 3.25rem);
   font-weight: 700;
 }
 
+/* Card and Subsection Headings */
 h3 {
   font-size: 1.35rem;
   font-weight: 650;
 }
 
+/* Emphasized Italics:
+   Styled as upright brand-colored keywords rather than slanted italics */
 em {
   font-style: normal;
   color: var(--blue);
 }
 
+/* Body Paragraphs:
+   text-wrap: pretty prevents unsightly single-word orphan endings in paragraphs */
 p {
   color: var(--muted);
   font-size: 1rem;
@@ -316,10 +421,13 @@ p {
   text-wrap: pretty;
 }
 
+/* Unified Section Padding:
+   Fluid vertical spacing (80px to 130px) and responsive horizontal gutters */
 .section {
   padding: clamp(80px, 8vw, 130px) clamp(20px, 4vw, 32px);
 }
 
+/* Centered Section Header Block (Title + Subtitle) */
 .section-header-center {
   text-align: center;
   max-width: 680px;
@@ -337,7 +445,9 @@ p {
 }
 
 /* ==========================================================================
-   Buttons & Interactive Elements (Emil Kowalski Physics)
+   BUTTONS & INTERACTIVE ELEMENTS (TACTILE TACTILE MICRO-INTERACTIONS)
+   Purpose: Provides immediate tactile feedback using CSS transforms,
+   elevation shadow transitions, and hover icon translations.
    ========================================================================== */
 
 .button {
@@ -352,23 +462,28 @@ p {
   font-size: 0.94rem;
   text-decoration: none;
   cursor: pointer;
+  /* Smooth transitions for all interactive hover/active states */
   transition: transform var(--duration-fast) var(--ease-out),
               background-color var(--duration-normal) var(--ease-out),
               box-shadow var(--duration-normal) var(--ease-out),
               border-color var(--duration-normal) var(--ease-out);
-  white-space: nowrap;
+  white-space: nowrap; /* Prevents button text from breaking into 2 lines */
 }
 
+/* Embedded icon inside button */
 .button svg {
   width: 18px;
   height: 18px;
   transition: transform var(--duration-fast) var(--ease-out);
 }
 
+/* Active Press State:
+   Micro-scales to 98% on mouse click or finger tap for realistic physical button feel */
 .button:active {
   transform: scale(0.98);
 }
 
+/* 1. Primary Solid Navy Button */
 .button-primary {
   background-color: var(--navy);
   color: #ffffff;
@@ -379,14 +494,16 @@ p {
 .button-primary:hover {
   background-color: var(--navy-hover);
   border-color: var(--navy-hover);
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* Lifts 2px on hover */
   box-shadow: var(--shadow-lg);
 }
 
+/* Hover micro-interaction: nudges arrow icon 3px to the right */
 .button-primary:hover svg {
   transform: translateX(3px);
 }
 
+/* 2. Secondary Ghost Button (Light Background) */
 .button-ghost {
   background-color: transparent;
   color: var(--navy);
@@ -404,6 +521,7 @@ p {
   transform: translateX(3px);
 }
 
+/* 3. Action Amber Button (Yellow CTA) */
 .button-yellow {
   background-color: var(--yellow);
   color: var(--deep);
@@ -424,6 +542,7 @@ p {
   transform: translateX(3px);
 }
 
+/* 4. Dark Ghost Button (Used on Dark Contrast Banner) */
 .button-dark-ghost {
   background-color: transparent;
   color: #ffffff;
@@ -436,6 +555,7 @@ p {
   transform: translateY(-2px);
 }
 
+/* Compact Button Variant (Used for Nav Bar CTA) */
 .button-small {
   min-height: 40px;
   padding: 8px 18px;
@@ -445,7 +565,14 @@ p {
 }
 
 /* ==========================================================================
-   Header & Floating Navigation Pill
+   HEADER & FLOATING NAVIGATION PILL
+   Purpose: Implements a floating pill-shaped sticky navigation bar.
+   Key Architecture:
+   - 'position: sticky; top: 14px' anchors it 14px from the top of the viewport.
+   - 'pointer-events: none' on .site-header prevents the invisible full-width
+     header wrapper from blocking clicks to elements beneath it.
+   - 'pointer-events: auto' on .nav re-enables click events strictly for the pill.
+   - Apple-style frosted glass effect via 'backdrop-filter: blur(24px) saturate(180%)'.
    ========================================================================== */
 
 .site-header {
@@ -453,27 +580,29 @@ p {
   top: 14px;
   z-index: 100;
   padding: 0;
-  pointer-events: none;
+  pointer-events: none; /* Crucial: clicks pass through transparent gutter areas */
   animation: fadeSlideDown 0.6s var(--ease-out) forwards;
   transition: transform 0.35s var(--ease-out);
   will-change: transform;
 }
 
+/* Auto-Hide State: Triggered dynamically by updateNavbarMotion() in app.js */
 .site-header.nav-hidden {
-  transform: translateY(-130%);
+  transform: translateY(-130%); /* Slides completely off-screen above the top */
 }
 
+/* Floating Pill Container */
 .nav {
-  pointer-events: auto;
+  pointer-events: auto; /* Restores clicks specifically to the navbar */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 24px;
   min-height: 66px;
   padding: 8px 16px 8px 22px;
-  background-color: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  background-color: rgba(255, 255, 255, 0.94); /* Semi-transparent white background */
+  backdrop-filter: blur(24px) saturate(180%);     /* Frosted glass background blur */
+  -webkit-backdrop-filter: blur(24px) saturate(180%); /* Safari WebKit support */
   border: 1px solid rgba(15, 23, 42, 0.08);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-lg);
@@ -484,14 +613,16 @@ p {
               border-color 0.3s var(--ease-out);
 }
 
+/* Compact Depth State: Triggered when user scrolls >60px */
 .nav.nav-scrolled {
-  min-height: 58px;
+  min-height: 58px; /* Slightly slimmer height */
   padding: 6px 14px 6px 18px;
-  background-color: rgba(255, 255, 255, 0.97);
+  background-color: rgba(255, 255, 255, 0.97); /* Higher opacity for better readability */
   box-shadow: 0 14px 32px -6px rgba(15, 23, 42, 0.12), 0 2px 6px -1px rgba(15, 23, 42, 0.05);
   border-color: rgba(15, 23, 42, 0.12);
 }
 
+/* Brand Logo (Owl Emblem + Two-Tone Wordmark) */
 .brand {
   display: inline-flex;
   align-items: center;
@@ -510,16 +641,19 @@ p {
   border-radius: var(--radius-sm);
 }
 
+/* Second half of wordmark ("Wisyo") highlighted in accent blue */
 .brand > span > span {
   color: var(--blue);
 }
 
+/* Navigation Links List */
 .nav-links {
   display: flex;
   align-items: center;
   gap: clamp(12px, 1.8vw, 28px);
 }
 
+/* Individual Text Nav Link */
 .nav-links > a:not(.button) {
   color: var(--muted);
   font-size: 0.92rem;
@@ -530,26 +664,37 @@ p {
               background-color var(--duration-fast) var(--ease-out);
 }
 
+/* Hover State */
 .nav-links > a:not(.button):hover {
   color: var(--blue);
   background-color: rgba(37, 99, 235, 0.06);
 }
 
+/* Active Scroll-Spy State:
+   Targeted via [aria-current="location"] dynamically managed by app.js */
 .nav-links > a[aria-current="location"]:not(.button) {
   color: var(--blue);
   background-color: rgba(37, 99, 235, 0.08);
 }
 
+/* Nav CTA Button Spacing */
 .nav-cta {
   margin-left: 8px;
 }
 
+/* Mobile Hamburger Menu Toggle Button: Hidden on desktop displays */
 .menu-toggle {
   display: none;
 }
 
 /* ==========================================================================
-   Hero Section
+   HERO SECTION
+   Purpose: The primary entrance viewport.
+   Architecture:
+   - Uses 'min-height: calc(100svh - 84px)': 'svh' (Small Viewport Height) ensures
+     the layout accounts for dynamic mobile URL address bars without jarring jumps.
+   - 2-Column CSS Grid layout with fractional ratios (1.15fr copy to 0.85fr artwork).
+   - Staggered entrance animations via fadeInUp and heroArtEntrance keyframes.
    ========================================================================== */
 
 .hero {
@@ -562,6 +707,9 @@ p {
   overflow: hidden;
 }
 
+/* 2-Column Hero Grid:
+   minmax(0, 1.15fr) allows the text container to shrink below content size without
+   causing horizontal grid blowout */
 .hero-grid {
   display: grid;
   grid-template-columns: minmax(0, 1.15fr) minmax(360px, 0.85fr);
@@ -569,6 +717,7 @@ p {
   align-items: center;
 }
 
+/* Left Column: Headline copy, value propositions, and action buttons */
 .hero-copy {
   position: relative;
   z-index: 2;
@@ -579,7 +728,7 @@ p {
 .hero h1 {
   margin-bottom: 22px;
   text-wrap: balance;
-  animation: fadeInUp 0.7s var(--ease-out) 0.22s both;
+  animation: fadeInUp 0.7s var(--ease-out) 0.22s both; /* Delayed entrance */
 }
 
 .hero-lead {
@@ -600,6 +749,7 @@ p {
   animation: fadeInUp 0.65s var(--ease-out) 0.48s both;
 }
 
+/* Trust Indicator Badges (Phil-IRI, Bilingual, Offline-Ready) */
 .hero-trust {
   display: flex;
   align-items: center;
@@ -627,7 +777,11 @@ p {
   color: var(--blue);
 }
 
-/* Hero Visual & Device Showcase */
+/* --------------------------------------------------------------------------
+   HERO VISUAL & CHARACTER ARTWORK SHOWCASE
+   Purpose: Interactive illustration container featuring layered lighting glow,
+   contact drop-shadow, and floating levitating badges.
+   -------------------------------------------------------------------------- */
 .hero-visual {
   position: relative;
   min-height: 580px;
@@ -635,6 +789,7 @@ p {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  /* isolation: isolate creates a clean independent stacking context */
   isolation: isolate;
   padding: 20px;
 }
@@ -650,6 +805,8 @@ p {
   animation: heroArtEntrance 0.85s var(--ease-out) 0.28s both;
 }
 
+/* Ambient Radial Glow:
+   Soft multi-stop radial gradient positioned behind the character illustration */
 .character-glow {
   position: absolute;
   top: 48%;
@@ -664,6 +821,8 @@ p {
   z-index: 0;
 }
 
+/* Contact Floor Shadow:
+   Simulates 3D depth by grounding the character on a virtual floor */
 .character-shadow {
   position: absolute;
   bottom: 8px;
@@ -678,25 +837,34 @@ p {
   z-index: 1;
 }
 
+/* High-Resolution Character Illustration */
 .character-img {
   position: relative;
   z-index: 2;
   display: block;
   width: clamp(270px, 30vw, 390px);
   height: auto;
-  aspect-ratio: 1122 / 1402;
+  aspect-ratio: 1122 / 1402; /* Locks natural aspect ratio to eliminate layout shifts */
   object-fit: contain;
   filter: drop-shadow(0 12px 24px rgba(15, 23, 42, 0.1));
   transition: transform var(--duration-normal) var(--ease-out),
               filter var(--duration-normal) var(--ease-out);
 }
 
+/* Micro-hover: lifts character slightly when user hovers mouse over showcase */
 .character-showcase:hover .character-img {
   transform: translateY(-4px);
   filter: drop-shadow(0 20px 32px rgba(15, 23, 42, 0.14));
 }
 
-/* Floating Benefit Cards with Rich Glassmorphism */
+/* --------------------------------------------------------------------------
+   FLOATING BENEFIT BADGES (GLASSMORPHISM)
+   Purpose: Frosted glass levitating cards highlighting core platform pillars.
+   Features:
+   - Rich glassmorphism with 20px backdrop blur
+   - Continuous subtle CSS keyframe float
+   - Mouse hover pauses animation and lifts badge
+   -------------------------------------------------------------------------- */
 .float-card {
   position: absolute;
   display: flex;
@@ -718,7 +886,18 @@ p {
               box-shadow var(--duration-fast) var(--ease-out);
 }
 
+/* Responsive Interaction Filter:
+   Only activates hover states on devices with an actual mouse cursor (pointer: fine).
+   Prevents sticky hover states from staying locked on mobile touchscreen taps. */
 @media (hover: hover) and (pointer: fine) {
+  .float-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    animation-play-state: paused; /* Freezes levitation float while user inspects badge */
+    box-shadow: 0 22px 42px -8px rgba(15, 23, 42, 0.16),
+                0 6px 16px -2px rgba(15, 23, 42, 0.06),
+                0 0 0 1px rgba(203, 213, 225, 0.85);
+  }
+}
   .float-card:hover {
     transform: translateY(-5px) scale(1.02);
     animation-play-state: paused;
@@ -2198,11 +2377,18 @@ p {
 }
 
 /* ==========================================================================
-   Preview Modal Dialog
+   PREVIEW MODAL DIALOG (HTML5 <dialog> STYLING)
+   Purpose: Fullscreen prototype image inspection modal.
+   Features:
+   - Native HTML5 top-layer stacking (immune to z-index fighting)
+   - Dynamic viewport sizing: min(94vw, 1020px) and max-height 92dvh
+   - CSS ::backdrop pseudo-element for frosted backdrop overlay
    ========================================================================== */
 
 #preview-dialog {
+  /* Fluid sizing: takes 94% of screen width on mobile, capped at 1020px on desktops */
   width: min(94vw, 1020px);
+  /* dvh (Dynamic Viewport Height) accounts for browser toolbars retracting */
   max-height: 92dvh;
   padding: 0;
   border: 1px solid var(--line);
@@ -2214,12 +2400,15 @@ p {
               opacity var(--duration-normal) var(--ease-out);
 }
 
+/* Native ::backdrop Pseudo-Element:
+   Renders the semi-transparent blurred overlay behind the active modal */
 #preview-dialog::backdrop {
-  background-color: rgba(11, 22, 68, 0.75);
-  backdrop-filter: blur(8px);
+  background-color: rgba(11, 22, 68, 0.75); /* Dark sapphire tint */
+  backdrop-filter: blur(8px);                 /* Frosted background blur */
   -webkit-backdrop-filter: blur(8px);
 }
 
+/* Modal Header Bar */
 .dialog-head {
   display: flex;
   align-items: center;
@@ -2251,6 +2440,7 @@ p {
   gap: 18px;
 }
 
+/* "Open original in new tab" link */
 .dialog-ext-link {
   font-size: 0.88rem;
   font-weight: 700;
@@ -2264,6 +2454,7 @@ p {
   color: var(--yellow);
 }
 
+/* Square Close Button [X] */
 .dialog-close-btn {
   display: grid;
   place-items: center;
@@ -2281,26 +2472,35 @@ p {
   border-color: #ffffff;
 }
 
+/* Modal Body: Centers the high-res SVG/PNG prototype */
 .dialog-image-body {
   height: min(74dvh, 740px);
   display: grid;
   place-items: center;
   padding: 24px;
-  overflow: auto;
+  overflow: auto; /* Allows scrolling if image exceeds viewport */
 }
 
 .dialog-image-body img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: contain;
+  object-fit: contain; /* Preserves exact prototype aspect ratio */
   filter: drop-shadow(var(--shadow-lg));
 }
 
 /* ==========================================================================
-   Responsive Breakpoints
+   RESPONSIVE BREAKPOINTS (MEDIA QUERIES)
+   Strategy: Responsive adaptation across 3 primary device tiers:
+   1. 1080px (Tablet Landscape & Small Laptops): Multi-columns collapse to 1 or 2
+   2. 768px (Tablet Portrait & Mobile): Hamburger menu activates, drawer unfolds
+   3. 480px (Compact Mobile): Full-width stacked buttons and form fields
    ========================================================================== */
 
+/* --------------------------------------------------------------------------
+   BREAKPOINT 1: <= 1080px (Small Desktops & Tablets)
+   -------------------------------------------------------------------------- */
 @media (max-width: 1080px) {
+  /* Hero section collapses to single centered column */
   .hero-grid {
     grid-template-columns: 1fr;
     gap: 40px;
@@ -2325,6 +2525,7 @@ p {
     justify-content: center;
   }
 
+  /* Two-column content grids collapse into vertical stacks */
   .about-grid, .why-grid, .mesh-grid, .contact-grid {
     grid-template-columns: 1fr;
     gap: 48px;
@@ -2344,10 +2545,12 @@ p {
     padding-left: 18px;
   }
 
+  /* 6 feature cards switch from 3 columns to 2 columns */
   .feature-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
+  /* Prototype interactive workspace stacks selector above preview image */
   .product-workspace {
     grid-template-columns: 1fr;
   }
@@ -2367,15 +2570,23 @@ p {
     justify-content: center;
   }
 
+  /* Footer splits into 2x2 grid */
   .footer-main {
     grid-template-columns: 1fr 1fr;
     gap: 40px;
   }
 }
 
+/* --------------------------------------------------------------------------
+   BREAKPOINT 2: <= 768px (Mobile & Tablets)
+   Key Changes:
+   - Activates mobile hamburger button (.menu-toggle)
+   - Transforms navigation links into a collapsible animated mobile drawer
+   - Re-adjusts hero artwork and floating badges for touch screens
+   -------------------------------------------------------------------------- */
 @media (max-width: 768px) {
   html {
-    scroll-padding-top: 84px;
+    scroll-padding-top: 84px; /* Lower sticky header offset for mobile */
   }
 
   .wrap {
@@ -2383,7 +2594,7 @@ p {
   }
 
   .site-header {
-    top: 8px;
+    top: 8px; /* Tighter top spacing on mobile */
   }
 
   .nav {
@@ -2391,6 +2602,7 @@ p {
     padding: 8px 14px;
   }
 
+  /* Reveal Hamburger Button */
   .menu-toggle {
     display: grid;
     place-content: center;
@@ -2402,6 +2614,7 @@ p {
     color: var(--navy);
   }
 
+  /* 3 Hamburger Spans: Transform smoothly into an 'X' close icon when expanded */
   .menu-toggle span {
     width: 20px;
     height: 2px;
@@ -2411,6 +2624,10 @@ p {
                 opacity var(--duration-fast) var(--ease-out);
   }
 
+  /* Hamburger to 'X' Transformation:
+     - Span 1: rotates 45deg down
+     - Span 2: fades to opacity: 0
+     - Span 3: rotates -45deg up */
   .menu-toggle[aria-expanded="true"] span:nth-child(1) {
     transform: translateY(7px) rotate(45deg);
   }
@@ -2423,12 +2640,14 @@ p {
     transform: translateY(-7px) rotate(-45deg);
   }
 
+  /* Mobile Navigation Drawer:
+     Positioned directly underneath the floating header */
   .nav-links {
     position: absolute;
     top: calc(100% + 8px);
     left: 0;
     right: 0;
-    display: none;
+    display: none; /* Hidden until .open class is toggled by app.js */
     flex-direction: column;
     align-items: stretch;
     gap: 4px;
@@ -2439,17 +2658,20 @@ p {
     box-shadow: var(--shadow-xl);
   }
 
+  /* When JS toggles .open: reveals drawer with fadeSlideDown animation */
   .nav-links.open {
     display: flex;
     animation: fadeSlideDown 0.28s var(--ease-out);
   }
 
+  /* Individual mobile links cascade with slideInRight */
   .nav-links.open > a:not(.button) {
     padding: 12px 16px;
     font-size: 0.95rem;
     animation: slideInRight 0.32s var(--ease-out-spring) backwards;
   }
 
+  /* Cascading entrance delays for mobile nav links */
   .nav-links.open > a:nth-child(1) { animation-delay: 30ms; }
   .nav-links.open > a:nth-child(2) { animation-delay: 65ms; }
   .nav-links.open > a:nth-child(3) { animation-delay: 100ms; }
@@ -2469,9 +2691,10 @@ p {
   }
 
   .scroll-cue {
-    display: none;
+    display: none; /* Hides scroll prompt arrow on smaller mobile viewports */
   }
 
+  /* Compact floating cards for mobile screens */
   .float-card {
     padding: 10px 14px;
     gap: 10px;
@@ -2513,6 +2736,7 @@ p {
     font-size: 0.72rem;
   }
 
+  /* Feature cards and audience cards switch to 1 column */
   .feature-grid {
     grid-template-columns: 1fr;
   }
@@ -2532,12 +2756,20 @@ p {
   }
 }
 
+/* --------------------------------------------------------------------------
+   BREAKPOINT 3: <= 480px (Compact Mobile Phones)
+   Key Changes:
+   - Full-width call-to-action buttons for ergonomic thumb interaction
+   - Stacked form inputs
+   - Maximum width safeguards on floating badges
+   -------------------------------------------------------------------------- */
 @media (max-width: 480px) {
   .hero-actions {
     flex-direction: column;
     width: 100%;
   }
 
+  /* Stretches buttons across full width on phones */
   .hero-actions .button {
     width: 100%;
   }
@@ -2616,12 +2848,16 @@ p {
 }
 
 /* ==========================================================================
-   Reduced Motion Accessibility Preference
+   REDUCED MOTION ACCESSIBILITY OVERRIDES (WCAG 2.1 CRITERION 2.3.3)
+   Purpose: When a user configures their OS to minimize motion:
+   1. Disables smooth scrolling (instant jump)
+   2. Neutralizes all CSS keyframes and transitions down to 0.01ms
+   3. Instantly reveals all elements marked with .reveal
    ========================================================================== */
 
 @media (prefers-reduced-motion: reduce) {
   html {
-    scroll-behavior: auto;
+    scroll-behavior: auto; /* Disables smooth scroll to prevent dizziness */
   }
 
   *, *::before, *::after {
@@ -2630,6 +2866,7 @@ p {
     transition-duration: 0.01ms !important;
   }
 
+  /* Ensures all content is 100% visible immediately without scroll animation */
   .reveal {
     opacity: 1 !important;
     transform: none !important;

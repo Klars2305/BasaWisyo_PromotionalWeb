@@ -1,23 +1,47 @@
 <!doctype html>
+<!--
+  ==========================================================================
+  BASAWISYO PROMOTIONAL WEB APPLICATION (index.html)
+  ==========================================================================
+  Academic startup promotional concept for Grades 7–12 Filipino literacy.
+  Architecture: Semantic HTML5, accessible ARIA landmarks, inline SVG sprites,
+  responsive layout grid, and progressive enhancement.
+-->
 <html lang="en" data-type="software" class="no-js">
 <head>
   <meta charset="utf-8">
+  <!-- JavaScript Detection: Replaces 'no-js' with 'js' on <html> immediately to enable JS-only styling/animations -->
   <script>document.documentElement.classList.replace('no-js', 'js');</script>
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#f8fafc">
   <meta name="page-type" content="software"><meta name="site-kind" content="software">
   <meta name="description" content="BasaWisyo is an educational learning platform concept for Filipino readers in Grades 7–12, with leveled English and Filipino practice, classroom quests, teacher insights, and an offline-first vision.">
   <title>BasaWisyo — From reading struggles to confident readers</title>
+  
+  <!-- Favicon -->
   <link rel="icon" href="assets/2fed55eddde2.png">
+  
+  <!-- Google Fonts: Preconnect establishes early handshake to speed up font loading -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400..800;1,9..40,400..700&family=Outfit:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Main Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  
+  <!-- Deferred Application Script: 'defer' ensures HTML parsing completes before script executes -->
   <script defer src="app.js"></script>
 </head>
 <body>
+  <!-- Accessibility Skip Link: Allows keyboard & screen-reader users to bypass repetitive header navigation -->
   <a class="skip-link" href="#main-content">Skip to content</a>
 
+  <!-- ======================================================================
+       SVG ICON SPRITE SHEET
+       Purpose: Centralized SVG symbol definition. Icons are referenced across
+       the page using <svg><use href="#icon-id"/></svg> without duplicate code
+       or extra HTTP network requests.
+       ====================================================================== -->
   <svg class="icon-sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
     <symbol id="icon-book" viewBox="0 0 24 24"><path d="M12 5.5c-2.4-1.4-5.2-1.7-8-1v14c2.8-.7 5.6-.4 8 1 2.4-1.4 5.2-1.7 8-1v-14c-2.8-.7-5.6-.4-8 1Zm0 0v14"/></symbol>
     <symbol id="icon-level" viewBox="0 0 24 24"><path d="M4 19h16M5 16v-4h4v4m2 0V8h4v8m2 0V4h4v12"/></symbol>
@@ -38,15 +62,27 @@
     <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
   </svg>
 
+  <!-- ======================================================================
+       SITE HEADER & NAVIGATION
+       Features:
+       - Floating responsive header with 3-state motion architecture (app.js)
+       - Accessible hamburger drawer with ARIA state tracking
+       - Dynamic scroll-spy indicator updating aria-current="location"
+       ====================================================================== -->
   <header class="site-header" id="page-top">
     <nav class="nav wrap" aria-label="Main navigation">
+      <!-- Brand Logo & Emblem -->
       <a class="brand" href="#hero" aria-label="BasaWisyo home">
         <img src="assets/2fed55eddde2.png" alt="BasaWisyo owl emblem" width="40" height="40">
         <span>Basa<span>Wisyo</span></span>
       </a>
+
+      <!-- Mobile Hamburger Toggle Button (ARIA-controlled by app.js) -->
       <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="nav-links">
         <span></span><span></span><span></span>
       </button>
+
+      <!-- Navigation Links Container (collapses into slide drawer on mobile) -->
       <div class="nav-links" id="nav-links">
         <a href="#hero">Home</a>
         <a href="#about">About Us</a>
@@ -373,7 +409,12 @@
       </div>
     </section>
 
-    <!-- PRODUCT PROTOTYPE SELECTOR -->
+    <!-- ======================================================================
+         PRODUCT PROTOTYPE INTERACTIVE SHOWCASE
+         Purpose: Displays 4 high-fidelity prototype screens with dynamic
+         crossfade transitions, accessible tab indicators, and modal enlargement.
+         Controlled dynamically by SECTION 8 & 9 in app.js.
+         ====================================================================== -->
     <section class="section product" id="product" aria-labelledby="product-title">
       <div class="wrap">
         <div class="section-header-center reveal">
@@ -382,14 +423,17 @@
         </div>
 
         <div class="product-workspace reveal">
-          <!-- Left Selector -->
+          <!-- Left Prototype Screen Selector (Tabs 01-04) -->
           <div class="product-sidebar">
             <div class="selector-header">
               <span class="selector-title">Select Prototype Screen</span>
+              <!-- Dynamic screen counter updated by app.js (e.g. 01 / 04) -->
               <span id="screen-count" class="screen-counter">01 / 04</span>
             </div>
 
+            <!-- role="group" indicates a composite widget of related screen option buttons -->
             <div class="screen-list" role="group" aria-label="Select prototype screen">
+              <!-- Each button uses aria-pressed to announce active/inactive selection to screen readers -->
               <button class="screen-option" type="button" data-screen="0" aria-pressed="true">
                 <span class="opt-num">01</span>
                 <span class="opt-text">
@@ -427,19 +471,23 @@
               </button>
             </div>
 
+            <!-- Prototype Navigation Controls (Previous / Next Buttons & Accessibility Live Region) -->
             <div class="selector-footer">
               <div class="nav-buttons">
+                <!-- Arrow navigation buttons: Disabled at boundary indices (0 and 3) by selectScreen() in app.js -->
                 <button id="prototype-prev" class="btn-ctrl" type="button" aria-label="Previous prototype screen" disabled>←</button>
                 <button id="prototype-next" class="btn-ctrl" type="button" aria-label="Next prototype screen">→</button>
               </div>
+              <!-- Accessibility ARIA Live Region: Screen readers announce screen change updates in polite mode -->
               <span id="prototype-status" class="status-indicator" role="status" aria-live="polite">Screen 1 of 4: Placement</span>
             </div>
           </div>
 
-          <!-- Right Display -->
+          <!-- Right Display: Interactive Prototype Canvas & Device Frame -->
           <div class="product-display">
             <div class="display-topbar">
               <span id="screen-label" class="display-label">01 / Placement Assessment</span>
+              <!-- Triggers the HTML5 <dialog> modal for fullscreen prototype inspection -->
               <button id="open-preview" class="preview-trigger" type="button">
                 Enlarge screen <span aria-hidden="true">↗</span>
               </button>
@@ -447,10 +495,12 @@
 
             <div class="device-holder">
               <div class="display-device">
+                <!-- Main prototype image: src and alt are dynamically updated by selectScreen() in app.js -->
                 <img id="product-image" src="assets/c65299b50564.svg" alt="Placement test prototype screen" width="340" height="680">
               </div>
             </div>
 
+            <!-- Dynamic screen description updated by app.js -->
             <p id="screen-description" class="screen-desc">A Phil-IRI-inspired placement concept helps identify a learner’s starting level without anxiety.</p>
           </div>
         </div>
@@ -565,7 +615,10 @@
             </div>
           </div>
 
-          <!-- RIGHT CARD: DIRECT INQUIRY FORM -->
+          <!-- RIGHT CARD: DIRECT INQUIRY FORM
+               Purpose: Front-end inquiry interface for educators and mentors.
+               Note: Client-side event listener in app.js intercepts submission
+               via event.preventDefault() to prevent disruptive page reloading. -->
           <form id="inquiry-form" class="contact-form reveal" novalidate>
             <div class="form-row">
               <div class="form-group">
@@ -685,7 +738,11 @@
     </div>
   </footer>
 
-  <!-- PROTOTYPE IMAGE PREVIEW MODAL -->
+  <!-- ======================================================================
+       ACCESSIBLE PROTOTYPE PREVIEW DIALOG MODAL
+       Purpose: Uses native HTML5 <dialog> with built-in modal backdrop (::backdrop),
+       top-layer stacking, and focus trap management. Operated via SECTION 9 in app.js.
+       ====================================================================== -->
   <dialog id="preview-dialog" aria-labelledby="dialog-title">
     <div class="dialog-head">
       <div class="dialog-title-wrap">
