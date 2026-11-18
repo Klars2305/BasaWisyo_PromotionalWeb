@@ -61,6 +61,7 @@
     <symbol id="icon-chat" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></symbol>
     <symbol id="icon-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4M12 8h.01"/></symbol>
     <symbol id="icon-qr" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM20 14v3h-1M14 20h3M20 20h.01"/></symbol>
+    <symbol id="icon-figma" viewBox="0 0 24 24"><path d="M9 3h3v6H9a3 3 0 0 1 0-6Zm3 0h3a3 3 0 0 1 0 6h-3V3ZM9 9h3v6H9a3 3 0 0 1 0-6Zm3 3a3 3 0 1 1 6 0 3 3 0 0 1-6 0ZM9 15h3v3a3 3 0 1 1-3-3Z"/></symbol>
   </svg>
 
   <!-- ======================================================================
@@ -553,14 +554,18 @@
     <!-- ======================================================================
          QR CODE ACCESS SECTION (FIGMA PROTOTYPE & LIVE SYSTEM)
          Purpose: Provides instant, projector-friendly mobile scanning access
-         to both the interactive Figma design prototype (Left) and the live
-         BasaWisyo web system (Right).
+         and direct Copy/Test actions for both the Figma UI prototype (Left)
+         and the live BasaWisyo web system (Right).
          ====================================================================== -->
     <section class="section qr-access" id="qr-access" aria-labelledby="qr-title">
       <div class="wrap">
-        <div class="section-header-center reveal">
-          <span class="section-eyebrow">Interactive Access</span>
-          <h2 id="qr-title">Scan to experience <em>BasaWisyo.</em></h2>
+        <div class="section-header-center qr-intro reveal">
+          <!-- Floating Eyebrow Pill with Blue Status Dot -->
+          <span class="qr-eyebrow-pill">
+            <span class="qr-dot qr-dot-blue" aria-hidden="true"></span>
+            <span>Interactive Access</span>
+          </span>
+          <h2 id="qr-title">Scan to experience<br><em>BasaWisyo.</em></h2>
           <p class="section-subtitle">Point your phone camera at either QR code below to explore our interactive Figma UI prototype or launch the live BasaWisyo system.</p>
         </div>
 
@@ -569,44 +574,104 @@
           <!-- LEFT CARD: FIGMA PROTOTYPE QR -->
           <article class="qr-card qr-card-figma reveal">
             <div class="qr-card-header">
-              <span class="qr-tag qr-tag-blue">01 · Design Prototype</span>
-              <span class="qr-badge-icon qr-badge-blue" aria-hidden="true">
-                <svg><use href="#icon-qr"/></svg>
+              <span class="qr-meta-label">
+                <svg class="qr-meta-icon" aria-hidden="true"><use href="#icon-qr"/></svg>
+                <strong class="qr-meta-num">01</strong>
+                <span class="qr-meta-sep" aria-hidden="true">·</span>
+                <span>Design Prototype</span>
+              </span>
+              <span class="qr-status-pill qr-pill-figma">
+                <svg aria-hidden="true"><use href="#icon-figma"/></svg>
+                <span>UI/UX Flow</span>
               </span>
             </div>
+
             <h3>Figma Prototype</h3>
             <p class="qr-desc">Walk through the clickable UI/UX screens, reading flows, and teacher dashboard layout directly on your device.</p>
 
-            <!-- High-contrast pure white quiet-zone container for reliable camera scanning -->
-            <div class="qr-frame">
-              <img src="assets/qr-figma.png" alt="QR code to open the BasaWisyo interactive Figma prototype" width="318" height="318" loading="lazy">
+            <!-- Centered High-Contrast White QR Box & Domain Caption -->
+            <div class="qr-media-block">
+              <div class="qr-frame">
+                <img src="assets/qr-figma.png" alt="QR code to open the BasaWisyo interactive Figma prototype" width="318" height="318" loading="lazy">
+              </div>
+              <span class="qr-caption">Custom QR Image · figma.com/design/BasaWisyo...</span>
             </div>
 
-            <div class="qr-footer-hint">
-              <svg aria-hidden="true"><use href="#icon-qr"/></svg>
-              <span>Scan with phone camera · Opens Figma Prototype</span>
+            <!-- Card Footer: Hairline Divider, Scan Hint, Copy & Test Link Buttons -->
+            <div class="qr-card-footer">
+              <div class="qr-footer-hint">
+                <svg aria-hidden="true"><use href="#icon-qr"/></svg>
+                <span>Scan with phone camera · Opens Figma Prototype</span>
+              </div>
+              <div class="qr-actions">
+                <button
+                  class="qr-btn qr-btn-outline"
+                  type="button"
+                  data-copy-url="https://www.figma.com/design/BH4SIUt0AxFF2TrjxeqRCu/BasaWisyo?node-id=0-1&amp;p=f&amp;t=TBTVRhCXgRW3owJy-0"
+                >
+                  Copy Link
+                </button>
+                <a
+                  class="qr-btn qr-btn-soft"
+                  href="https://www.figma.com/design/BH4SIUt0AxFF2TrjxeqRCu/BasaWisyo?node-id=0-1&amp;p=f&amp;t=TBTVRhCXgRW3owJy-0"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Test Link <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
           </article>
 
           <!-- RIGHT CARD: BASAWISYO LIVE SYSTEM QR -->
           <article class="qr-card qr-card-system reveal">
             <div class="qr-card-header">
-              <span class="qr-tag qr-tag-gold">02 · Live System</span>
-              <span class="qr-badge-icon qr-badge-gold" aria-hidden="true">
-                <svg><use href="#icon-qr"/></svg>
+              <span class="qr-meta-label">
+                <svg class="qr-meta-icon" aria-hidden="true"><use href="#icon-qr"/></svg>
+                <strong class="qr-meta-num">02</strong>
+                <span class="qr-meta-sep" aria-hidden="true">·</span>
+                <span>Live System</span>
+              </span>
+              <span class="qr-status-pill qr-pill-live">
+                <span class="qr-dot qr-dot-green" aria-hidden="true"></span>
+                <span>Live</span>
               </span>
             </div>
+
             <h3>BasaWisyo System</h3>
             <p class="qr-desc">Try the working BasaWisyo platform experience directly on your mobile browser or tablet.</p>
 
-            <!-- High-contrast pure white quiet-zone container for reliable camera scanning -->
-            <div class="qr-frame">
-              <img src="assets/qr-system.png" alt="QR code to launch the live BasaWisyo system" width="318" height="318" loading="lazy">
+            <!-- Centered High-Contrast White QR Box & Domain Caption -->
+            <div class="qr-media-block">
+              <div class="qr-frame">
+                <img src="assets/qr-system.png" alt="QR code to launch the live BasaWisyo system" width="318" height="318" loading="lazy">
+              </div>
+              <span class="qr-caption">Custom QR Image · basawisyoproject-basawisyo.vercel.app</span>
             </div>
 
-            <div class="qr-footer-hint">
-              <svg aria-hidden="true"><use href="#icon-qr"/></svg>
-              <span>Scan with phone camera · Launches Live System</span>
+            <!-- Card Footer: Hairline Divider, Scan Hint, Copy & Primary Test Link Buttons -->
+            <div class="qr-card-footer">
+              <div class="qr-footer-hint">
+                <svg aria-hidden="true"><use href="#icon-qr"/></svg>
+                <span>Scan with phone camera · Launches Live System</span>
+              </div>
+              <div class="qr-actions">
+                <button
+                  class="qr-btn qr-btn-outline"
+                  type="button"
+                  data-copy-url="https://basawisyoproject-basawisyo.vercel.app/"
+                >
+                  Copy Link
+                </button>
+                <a
+                  class="qr-btn qr-btn-primary"
+                  href="https://basawisyoproject-basawisyo.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Test Link <span aria-hidden="true">↗</span>
+                </a>
+              </div>
             </div>
           </article>
         </div>

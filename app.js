@@ -545,3 +545,71 @@ if (inquiryForm) {
     event.preventDefault(); // Suppresses default HTTP form submission
   });
 }
+
+// --------------------------------------------------------------------------
+// SECTION 11: QR ACCESS SECTION — COPY LINK CLIPBOARD CONTROLS
+// --------------------------------------------------------------------------
+// Purpose: Powers the "Copy Link" buttons in the QR Access section (#qr-access).
+// Uses the modern asynchronous Clipboard API (navigator.clipboard.writeText)
+// with a hidden <textarea> fallback so copying works even on local file:// pages.
+
+const copyLinkButtons = document.querySelectorAll('[data-copy-url]');
+
+/**
+ * Copies a text string to the user's clipboard with cross-context fallback.
+ * @param {string} text - The URL string to copy.
+ * @returns {Promise<boolean>} Resolves true if copy succeeded.
+ */
+async function copyTextToClipboard(text) {
+  // Modern Clipboard API (HTTPS & localhost)
+  if (navigator.clipboard && typeof navigator.clipboard.writeText === 'function') {
+    try {
+      await navigator.clipboard.writeText(text);
+      return true;
+    } catch {
+      // Fall through to legacy textarea fallback if clipboard permission is blocked
+    }
+  }
+
+  // Fallback for local file:// presentation demos or older browsers
+  const tempInput = document.createElement('textarea');
+  tempInput.value = text;
+  tempInput.setAttribute('readonly', '');
+  tempInput.style.position = 'fixed';
+  tempInput.style.opacity = '0';
+  document.body.appendChild(tempInput);
+  tempInput.select();
+
+  let copied = false;
+  try {
+    copied = document.execCommand('copy');
+  } catch {
+    copied = false;
+  }
+  document.body.removeChild(tempInput);
+  return copied;
+}
+
+// Bind click listeners to every "Copy Link" button
+copyLinkButtons.forEach((button) => {
+  const defaultLabel = button.textContent.trim();
+  let resetTimer = null;
+
+  button.addEventListener('click', async () => {
+    const url = button.getAttribute('data-copy-url');
+    if (!url) return;
+
+    const ok = await copyTextToClipboard(url);
+    if (ok) {
+      button.textContent = 'Copied ✓';
+      button.classList.add('is-copied');
+
+      // Reset button label back to "Copy Link" after 2 seconds
+      clearTimeout(resetTimer);
+      resetTimer = setTimeout(() => {
+        button.textContent = defaultLabel;
+        button.classList.remove('is-copied');
+      }, 2000);
+    }
+  });
+});

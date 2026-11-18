@@ -1916,12 +1916,13 @@ p {
 
 /* ==========================================================================
    QR CODE ACCESS SECTION (FIGMA PROTOTYPE & LIVE SYSTEM)
-   Purpose: Projector-friendly, high-contrast scannable QR code showcase.
+   Purpose: Clean, projector-friendly scannable QR code showcase with
+   left-aligned card headers/actions and centered high-contrast QR frames.
    Architecture:
-   - Two-column CSS Grid (.qr-grid) capped at 920px: Left = Figma, Right = System.
-   - Pure white quiet-zone container (.qr-frame) guarantees reliable phone
-     camera recognition even under dimmed lighting or classroom projectors.
-   - Corner scanner brackets via CSS linear gradients add a subtle scan cue.
+   - Floating eyebrow pill (.qr-eyebrow-pill) with blue indicator dot
+   - Two-column CSS Grid (.qr-grid): Left = Figma Prototype, Right = Live System
+   - Solid pure-white quiet-zone container (.qr-frame) for reliable scanning
+   - Interactive Copy Link & Test Link controls powered by SECTION 11 in app.js
    ========================================================================== */
 
 .qr-access {
@@ -1930,176 +1931,245 @@ p {
   border-bottom: 1px solid var(--line);
 }
 
+/* Section Header Overrides for Centered Eyebrow Pill & Two-Line Title */
+.qr-intro {
+  max-width: 640px;
+  margin-bottom: 48px;
+}
+
+.qr-intro h2 {
+  color: var(--ink);
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+}
+
+.qr-intro .section-subtitle {
+  max-width: 540px;
+  font-size: 0.98rem;
+  color: var(--muted-light);
+}
+
+/* Top Floating Pill ("• Interactive Access") */
+.qr-eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  margin-bottom: 20px;
+  background-color: #ffffff;
+  border: 1px solid var(--blue-border);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-sm);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--blue);
+}
+
+/* Status Dots (Eyebrow Blue & Live Green) */
+.qr-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.qr-dot-blue {
+  background-color: var(--blue);
+}
+
+.qr-dot-green {
+  background-color: #10b981;
+}
+
 /* Balanced Two-Column Grid (Left: Figma Prototype, Right: BasaWisyo System) */
 .qr-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
-  max-width: 920px;
+  gap: 28px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
-/* Individual QR Card Container */
+/* Individual QR Card Container (Left-Aligned Layout) */
 .qr-card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  padding: 36px 32px 30px;
+  align-items: stretch;
+  text-align: left;
+  padding: 28px 30px 26px;
   background-color: var(--surface);
   border: 1px solid var(--line);
-  border-radius: var(--radius-xl);
-  box-shadow: var(--shadow-lg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 32px -12px rgba(15, 23, 42, 0.08),
+              0 2px 6px -1px rgba(15, 23, 42, 0.03);
   transition: transform var(--duration-normal) var(--ease-out),
               box-shadow var(--duration-normal) var(--ease-out),
               border-color var(--duration-normal) var(--ease-out);
 }
 
+/* Left Card Subtle Blue Accent Frame (matches visual reference highlight) */
+.qr-card-figma {
+  border: 1.5px solid var(--blue-border);
+  box-shadow: 0 14px 36px -12px rgba(37, 99, 235, 0.14),
+              0 2px 8px -2px rgba(15, 23, 42, 0.04);
+}
+
 /* Hover Elevation (mouse/fine-pointer devices only to avoid sticky touch states) */
 @media (hover: hover) and (pointer: fine) {
   .qr-card:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
-    border-color: var(--blue-border);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 42px -12px rgba(15, 23, 42, 0.13);
+  }
+
+  .qr-card-figma:hover {
+    border-color: #93c5fd;
+    box-shadow: 0 20px 42px -12px rgba(37, 99, 235, 0.18);
   }
 
   .qr-card-system:hover {
-    border-color: #fcd34d;
+    border-color: var(--line-strong);
   }
 }
 
-/* Card Header Row (Tag Pill + Corner Icon) */
+/* Card Header Row: Metadata Left + Status Pill Right */
 .qr-card-header {
-  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  margin-bottom: 20px;
+  margin-bottom: 18px;
 }
 
-/* Category Tag Pill */
-.qr-tag {
+/* Metadata Label ("01 · DESIGN PROTOTYPE" / "02 · LIVE SYSTEM") */
+.qr-meta-label {
   display: inline-flex;
   align-items: center;
-  padding: 5px 13px;
-  border-radius: var(--radius-pill);
-  font-size: 0.76rem;
-  font-weight: 800;
+  gap: 6px;
+  font-size: 0.74rem;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.07em;
+  color: var(--muted-light);
 }
 
-.qr-tag-blue {
-  background-color: var(--blue-subtle);
-  color: var(--blue);
-  border: 1px solid var(--blue-border);
-}
-
-.qr-tag-gold {
-  background-color: var(--yellow-subtle);
-  color: #92400e;
-  border: 1px solid #fde68a;
-}
-
-/* Card Corner Icon Badge */
-.qr-badge-icon {
-  display: grid;
-  place-items: center;
-  width: 38px;
-  height: 38px;
-  border-radius: var(--radius-md);
-  flex-shrink: 0;
-}
-
-.qr-badge-icon svg {
-  width: 19px;
-  height: 19px;
-}
-
-.qr-badge-blue {
-  background-color: var(--blue-subtle);
+.qr-meta-icon {
+  width: 15px;
+  height: 15px;
   color: var(--blue);
 }
 
-.qr-badge-gold {
-  background-color: var(--yellow-subtle);
-  color: #b45309;
+.qr-meta-num {
+  color: var(--blue);
+  font-weight: 800;
 }
 
-/* Card Title & Description */
+.qr-meta-sep {
+  color: var(--line-strong);
+}
+
+/* Top-Right Status Pill ("UI/UX Flow" / "• Live") */
+.qr-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.qr-status-pill svg {
+  width: 13px;
+  height: 13px;
+  color: var(--blue);
+}
+
+.qr-pill-figma {
+  background-color: #f8fafc;
+  color: var(--muted);
+  border: 1px solid var(--line);
+}
+
+.qr-pill-live {
+  background-color: #ecfdf5;
+  color: #059669;
+  border: 1px solid #a7f3d0;
+}
+
+/* Card Title & Description (Left-Aligned) */
 .qr-card h3 {
-  font-size: 1.55rem;
-  margin-bottom: 10px;
-  color: var(--navy);
+  font-size: 1.45rem;
+  font-weight: 750;
+  margin-bottom: 8px;
+  color: var(--ink);
 }
 
 .qr-desc {
-  font-size: 0.94rem;
+  font-size: 0.92rem;
   line-height: 1.6;
-  color: var(--muted);
-  max-width: 340px;
+  color: var(--muted-light);
   margin: 0 0 26px;
 }
 
-/* High-Contrast QR Code Quiet-Zone Frame:
-   Pure #ffffff background + 18px quiet-zone padding ensures instant camera detection.
-   Corner accents use CSS background gradients to create a clean viewfinder aesthetic. */
+/* Centered QR Media Column (QR Frame + Domain Caption) */
+.qr-media-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 0 24px;
+}
+
+/* Clean White Quiet-Zone QR Box:
+   Pure #ffffff background + 18px quiet-zone padding guarantees instant scanning */
 .qr-frame {
-  position: relative;
   display: grid;
   place-items: center;
   padding: 18px;
-  margin-top: auto;
   background-color: #ffffff;
   border: 1px solid var(--line);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
-}
-
-/* Decorative Viewfinder Corner Brackets around the QR Frame */
-.qr-frame::before,
-.qr-frame::after {
-  content: '';
-  position: absolute;
-  inset: -6px;
-  border-radius: calc(var(--radius-lg) + 4px);
-  pointer-events: none;
-}
-
-.qr-card-figma .qr-frame::before {
-  border: 2px dashed rgba(37, 99, 235, 0.28);
-}
-
-.qr-card-system .qr-frame::before {
-  border: 2px dashed rgba(245, 158, 11, 0.4);
+  border-radius: 18px;
+  box-shadow: 0 8px 24px -8px rgba(15, 23, 42, 0.08);
 }
 
 /* Razor-Sharp QR Code Image:
-   image-rendering: pixelated preserves crisp black/white module edges on high-DPI screens */
+   image-rendering: pixelated preserves crisp black/white module edges */
 .qr-frame img {
-  width: min(216px, 100%);
+  width: min(210px, 100%);
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
   image-rendering: pixelated;
-  border-radius: 6px;
 }
 
-/* Scan Instruction Hint Below QR Code */
+/* Muted Caption Under QR Box */
+.qr-caption {
+  margin-top: 12px;
+  font-size: 0.76rem;
+  font-weight: 500;
+  color: #94a3b8;
+  text-align: center;
+  word-break: break-word;
+}
+
+/* Card Footer Section: Hairline Divider + Scan Hint + Action Buttons */
+.qr-card-footer {
+  padding-top: 18px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Inline Scan Hint Row */
 .qr-footer-hint {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  justify-content: center;
   gap: 8px;
-  margin-top: 22px;
-  padding: 7px 14px;
-  border-radius: var(--radius-pill);
-  background-color: var(--paper);
-  border: 1px solid var(--line);
-  font-size: 0.8rem;
-  font-weight: 650;
-  color: var(--muted);
+  font-size: 0.81rem;
+  font-weight: 500;
+  color: var(--muted-light);
 }
 
 .qr-footer-hint svg {
@@ -2108,8 +2178,83 @@ p {
   color: var(--blue);
 }
 
-.qr-card-system .qr-footer-hint svg {
-  color: var(--yellow-hover);
+/* Interactive Buttons Row (Copy Link & Test Link) */
+.qr-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.qr-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1;
+  cursor: pointer;
+  transition: transform var(--duration-fast) var(--ease-out),
+              background-color var(--duration-fast) var(--ease-out),
+              border-color var(--duration-fast) var(--ease-out),
+              color var(--duration-fast) var(--ease-out),
+              box-shadow var(--duration-fast) var(--ease-out);
+}
+
+.qr-btn:active {
+  transform: scale(0.97);
+}
+
+/* Copy Link Outline Button */
+.qr-btn-outline {
+  background-color: #ffffff;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.qr-btn-outline:hover {
+  background-color: #f8fafc;
+  border-color: var(--line-strong);
+}
+
+/* Copied Confirmation State (toggled via app.js) */
+.qr-btn-outline.is-copied {
+  background-color: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #059669;
+}
+
+/* Left Card Test Link Button (Soft Neutral Tint) */
+.qr-btn-soft {
+  background-color: #f8fafc;
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+
+.qr-btn-soft:hover {
+  background-color: var(--blue-subtle);
+  border-color: var(--blue-border);
+  color: var(--blue);
+}
+
+/* Right Card Test Link Button (Primary Brand Blue Pill) */
+.qr-btn-primary {
+  background-color: var(--blue);
+  color: #ffffff;
+  border: 1px solid var(--blue);
+  border-radius: var(--radius-pill);
+  padding: 8px 18px;
+  box-shadow: 0 4px 12px -2px rgba(37, 99, 235, 0.35);
+}
+
+.qr-btn-primary:hover {
+  background-color: var(--blue-hover);
+  border-color: var(--blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px -2px rgba(37, 99, 235, 0.45);
 }
 
 /* ==========================================================================
