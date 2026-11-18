@@ -334,6 +334,10 @@ html.js:not(.reduced-motion) .reveal.revealed {
 .feature-grid > .reveal:nth-child(5) { --reveal-delay: 90ms; }
 .feature-grid > .reveal:nth-child(6) { --reveal-delay: 180ms; }
 
+/* QR Access Cards: 100ms cascade between Left (Figma) and Right (System) */
+.qr-grid > .reveal:nth-child(1) { --reveal-delay: 0ms; }
+.qr-grid > .reveal:nth-child(2) { --reveal-delay: 100ms; }
+
 /* Audience Target Cards: 90ms increments */
 .audience-grid > .reveal:nth-child(1) { --reveal-delay: 0ms; }
 .audience-grid > .reveal:nth-child(2) { --reveal-delay: 90ms; }
@@ -1911,6 +1915,204 @@ p {
 }
 
 /* ==========================================================================
+   QR CODE ACCESS SECTION (FIGMA PROTOTYPE & LIVE SYSTEM)
+   Purpose: Projector-friendly, high-contrast scannable QR code showcase.
+   Architecture:
+   - Two-column CSS Grid (.qr-grid) capped at 920px: Left = Figma, Right = System.
+   - Pure white quiet-zone container (.qr-frame) guarantees reliable phone
+     camera recognition even under dimmed lighting or classroom projectors.
+   - Corner scanner brackets via CSS linear gradients add a subtle scan cue.
+   ========================================================================== */
+
+.qr-access {
+  background-color: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+/* Balanced Two-Column Grid (Left: Figma Prototype, Right: BasaWisyo System) */
+.qr-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+/* Individual QR Card Container */
+.qr-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 36px 32px 30px;
+  background-color: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--duration-normal) var(--ease-out),
+              box-shadow var(--duration-normal) var(--ease-out),
+              border-color var(--duration-normal) var(--ease-out);
+}
+
+/* Hover Elevation (mouse/fine-pointer devices only to avoid sticky touch states) */
+@media (hover: hover) and (pointer: fine) {
+  .qr-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-xl);
+    border-color: var(--blue-border);
+  }
+
+  .qr-card-system:hover {
+    border-color: #fcd34d;
+  }
+}
+
+/* Card Header Row (Tag Pill + Corner Icon) */
+.qr-card-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+/* Category Tag Pill */
+.qr-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 13px;
+  border-radius: var(--radius-pill);
+  font-size: 0.76rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.qr-tag-blue {
+  background-color: var(--blue-subtle);
+  color: var(--blue);
+  border: 1px solid var(--blue-border);
+}
+
+.qr-tag-gold {
+  background-color: var(--yellow-subtle);
+  color: #92400e;
+  border: 1px solid #fde68a;
+}
+
+/* Card Corner Icon Badge */
+.qr-badge-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+
+.qr-badge-icon svg {
+  width: 19px;
+  height: 19px;
+}
+
+.qr-badge-blue {
+  background-color: var(--blue-subtle);
+  color: var(--blue);
+}
+
+.qr-badge-gold {
+  background-color: var(--yellow-subtle);
+  color: #b45309;
+}
+
+/* Card Title & Description */
+.qr-card h3 {
+  font-size: 1.55rem;
+  margin-bottom: 10px;
+  color: var(--navy);
+}
+
+.qr-desc {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 340px;
+  margin: 0 0 26px;
+}
+
+/* High-Contrast QR Code Quiet-Zone Frame:
+   Pure #ffffff background + 18px quiet-zone padding ensures instant camera detection.
+   Corner accents use CSS background gradients to create a clean viewfinder aesthetic. */
+.qr-frame {
+  position: relative;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+  margin-top: auto;
+  background-color: #ffffff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+}
+
+/* Decorative Viewfinder Corner Brackets around the QR Frame */
+.qr-frame::before,
+.qr-frame::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border-radius: calc(var(--radius-lg) + 4px);
+  pointer-events: none;
+}
+
+.qr-card-figma .qr-frame::before {
+  border: 2px dashed rgba(37, 99, 235, 0.28);
+}
+
+.qr-card-system .qr-frame::before {
+  border: 2px dashed rgba(245, 158, 11, 0.4);
+}
+
+/* Razor-Sharp QR Code Image:
+   image-rendering: pixelated preserves crisp black/white module edges on high-DPI screens */
+.qr-frame img {
+  width: min(216px, 100%);
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
+  image-rendering: pixelated;
+  border-radius: 6px;
+}
+
+/* Scan Instruction Hint Below QR Code */
+.qr-footer-hint {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+  padding: 7px 14px;
+  border-radius: var(--radius-pill);
+  background-color: var(--paper);
+  border: 1px solid var(--line);
+  font-size: 0.8rem;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.qr-footer-hint svg {
+  width: 15px;
+  height: 15px;
+  color: var(--blue);
+}
+
+.qr-card-system .qr-footer-hint svg {
+  color: var(--yellow-hover);
+}
+
+/* ==========================================================================
    Audience Section
    ========================================================================== */
 
@@ -2844,9 +3046,19 @@ p {
     font-size: 0.72rem;
   }
 
-  /* Feature cards and audience cards switch to 1 column */
+  /* Feature cards, QR cards, and audience cards switch to 1 column */
   .feature-grid {
     grid-template-columns: 1fr;
+  }
+
+  .qr-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+    max-width: 460px;
+  }
+
+  .qr-card {
+    padding: 28px 22px 24px;
   }
 
   .audience-grid {
